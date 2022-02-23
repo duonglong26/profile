@@ -3,33 +3,90 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Resume</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="./asset/css/base.css">
-    <link rel="stylesheet" href="./asset/css/normalize.css">
+    <!-- <link rel="stylesheet" href="./asset/css/normalize.css"> -->
     <link rel="stylesheet" href="./asset/css/header.css">
     <link rel="stylesheet" href="./asset/css/content.css">
     <link rel="stylesheet" href="./asset/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <!-- Header -->
     <header>
-        <h1>Header</h1>
-        <!-- Viết code ở đây nhé -->
+        <div class="header">
+            <div class="header__title-page shadow">
+                MY PROFILE
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav__link shadow" href="#">Thông tin cá nhân</a>
+                </li>
+                <li class="nav-item shadow">
+                    <a class="nav__link" href="#">Học vấn</a>
+                </li>
+                <li class="nav-item shadow">
+                    <a class="nav__link" href="#">Ngoại ngữ</a>
+                </li>
+                <li class="nav-item shadow">
+                    <a class="nav__link" href="#">Kỹ năng</a>
+                </li>
+                <li class="nav-item shadow">
+                    <a class="nav__link" href="#">Kinh nghiệm</a>
+                </li>
+                <li class="nav-item shadow">
+                    <a class="nav__link" href="#">Phản hồi</a>
+                </li>
+            </ul>
+            <div class="header__bar">
+                <i class="fa-solid fa-bars header__bar-icon" 
+                    onclick="handleMenu('open')" id="header__bar-icon">
+                </i>
+                <ul class="header__bar-list" id="header__bar-list">
+                    <li class="header__bar-icon--exit" onclick="handleMenu('close')">
+                        <i class="fa-solid fa-xmark"></i>
+                    </li>
+                    <li class="nav-item shadow">
+                        <a class="nav__link shadow" href="#">Thông tin cá nhân</a>
+                    </li>
+                    <li class="nav-item shadow">
+                        <a class="nav__link" href="#">Học vấn</a>
+                    </li>
+                    <li class="nav-item shadow">
+                        <a class="nav__link" href="#">Ngoại ngữ</a>
+                    </li>
+                    <li class="nav-item shadow">
+                        <a class="nav__link" href="#">Kỹ năng</a>
+                    </li>
+                    <li class="nav-item shadow">
+                        <a class="nav__link" href="#">Kinh nghiệm</a>
+                    </li>
+                    <li class="nav-item shadow">
+                        <a class="nav__link" href="#">Phản hồi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </header>
 
     <!-- Container -->
-    <div class="container">
+    <!-- <div class="container">
         <h1>Body</h1>
-    </div>
+    </div> -->
 
     <!-- Footer -->
-    <div class="footer">
+    <!-- <div class="footer">
         <div class="signup-section">
         </div>
         <div class="bg-black">
         </div>
-    </div>
+    </div> -->
+    <script src="./asset/js/HeaderComponent.js">
+
+    </script>
 </body>
 
 </html>

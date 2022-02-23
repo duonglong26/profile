@@ -4,6 +4,7 @@
     --black-color: #000;
     --text-color: #333;
     --border-color: #dbdbdb;
+    --hover-text-color: rgb(231, 38, 38);
 }
 
 * {
