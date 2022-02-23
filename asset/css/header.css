@@ -1,5 +1,5 @@
 .header {
-    display: block;
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
 
 .header__title-page {
     width: 30%;
-    float: left;
+    /* float: left; */
     text-align: center;
     line-height: 71.95px;
     color: var(--text-color);
@@ -28,8 +28,9 @@
 
 .nav {
     margin: 0;
-    width: 70%;
+    width: 60%;
     float: right;
+    /* justify-content: flex-end; */
     display: flex;
     list-style: none;
     justify-content: space-around;
@@ -42,9 +43,10 @@
 
 .nav__link {
     text-decoration: none;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    font-weight: bold;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .shadow{
@@ -80,7 +82,7 @@
 /* @media only screen and (max-width: 800px) { */
 @media (max-width: 800px) {
     .header__title-page{
-        width: 50%;
+        width: 40%;
     }
     .nav{
         display: none;
@@ -88,7 +90,7 @@
     .header__bar {
         display: block;
         margin: 0;
-        width: 50%;
+        width: 60%;
         height: 100%;
         float: right;
         position: relative;
@@ -120,10 +122,9 @@
     .nav__link{
         user-select: none;
         color: #FFFFFF;
-        text-transform: uppercase;
     }
     .header__bar-icon--exit{
-        font-size:30px;
+        font-size:2.2rem;
         color: #FFFFFF;
         position:absolute;
         left:10px;

@@ -17,7 +17,9 @@ html {
     /* 62.5% ~ 10px */
     font-size: 62.5%;
     line-height: 1.6rem;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     position: relative;
     min-height: 100%;
