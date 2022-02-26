@@ -33,6 +33,11 @@ html {
             background-size: cover;
 }
 
+::selection {
+    background-color: #38f9d7;
+    color: var(--white-color);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
