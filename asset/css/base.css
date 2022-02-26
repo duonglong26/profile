@@ -1,6 +1,6 @@
 :root {
     --primary-color: #3d3c3c;
-    --white-color: #fff;
+    --white-color: #FFFFFF;
     --black-color: #000;
     --text-color: #333;
     --border-color: #dbdbdb;
@@ -87,3 +87,8 @@ html {
     text-decoration: none !important;
     background: linear-gradient(to right, #43e97b, #38f9d7);
 }
+
+.btn:hover {
+    background: linear-gradient(to right, #38f9d7, #43e97b);
+    box-shadow: -0.5px 8px 25px rgb(102, 172, 194);
+ }
