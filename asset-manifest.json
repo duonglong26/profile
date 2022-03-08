@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/profile/static/css/main.184d8a1c.css",
+    "main.js": "/profile/static/js/main.e69d25d4.js",
+    "static/js/787.f2a0fa2f.chunk.js": "/profile/static/js/787.f2a0fa2f.chunk.js",
+    "static/media/abstract-triangle-background-ng.jpg": "/profile/static/media/abstract-triangle-background-ng.253a16068207c1990645.jpg",
+    "index.html": "/profile/index.html",
+    "main.184d8a1c.css.map": "/profile/static/css/main.184d8a1c.css.map",
+    "main.e69d25d4.js.map": "/profile/static/js/main.e69d25d4.js.map",
+    "787.f2a0fa2f.chunk.js.map": "/profile/static/js/787.f2a0fa2f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.184d8a1c.css",
+    "static/js/main.e69d25d4.js"
+  ]
+}
