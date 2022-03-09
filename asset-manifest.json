@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/build-profile/static/css/main.dbcedc14.css",
-    "main.js": "/build-profile/static/js/main.0eb5077f.js",
-    "static/js/787.f2a0fa2f.chunk.js": "/build-profile/static/js/787.f2a0fa2f.chunk.js",
-    "static/media/abstract-triangle-background-ng.jpg": "/build-profile/static/media/abstract-triangle-background-ng.253a16068207c1990645.jpg",
-    "index.html": "/build-profile/index.html",
-    "main.dbcedc14.css.map": "/build-profile/static/css/main.dbcedc14.css.map",
-    "main.0eb5077f.js.map": "/build-profile/static/js/main.0eb5077f.js.map",
-    "787.f2a0fa2f.chunk.js.map": "/build-profile/static/js/787.f2a0fa2f.chunk.js.map"
+    "main.css": "/profile/static/css/main.96841149.css",
+    "main.js": "/profile/static/js/main.56ba94b4.js",
+    "static/js/787.f2a0fa2f.chunk.js": "/profile/static/js/787.f2a0fa2f.chunk.js",
+    "static/media/abstract-triangle-background-ng.jpg": "/profile/static/media/abstract-triangle-background-ng.253a16068207c1990645.jpg",
+    "index.html": "/profile/index.html",
+    "main.96841149.css.map": "/profile/static/css/main.96841149.css.map",
+    "main.56ba94b4.js.map": "/profile/static/js/main.56ba94b4.js.map",
+    "787.f2a0fa2f.chunk.js.map": "/profile/static/js/787.f2a0fa2f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dbcedc14.css",
-    "static/js/main.0eb5077f.js"
+    "static/css/main.96841149.css",
+    "static/js/main.56ba94b4.js"
   ]
 }
