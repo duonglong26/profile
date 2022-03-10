@@ -1,0 +1,67 @@
+@import "../../../styles/root";
+
+.home {
+    position: relative;
+    top: $height-header;
+    // font-family: 'Sunflower', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+
+    .content {
+        width: 600px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 15px;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.83);
+        border-radius: 10px;
+        position: relative;
+        top: -50px;
+        border-radius: 500px;
+
+        .welcome {
+            display: block;
+            font-size: 2.5rem;
+            margin: 0 0 10px;
+            text-align: center;
+            line-height: 5rem;
+            font-weight: 300;
+            @include linerText(45deg, #06619c, #da0214);
+        }
+
+        .userName {
+            display: block;
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+            line-height: 5rem;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .introductionUser {
+            display: block;
+            padding: 0 75px;
+            font-size: 1.6rem;
+            margin: 0 0 10px;
+            text-align: center;
+            line-height: 1.8rem;
+            @include linerText(45deg, #e70202, #011e33);
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            width: 200px;
+            margin: 8px;
+        }
+    }
+}

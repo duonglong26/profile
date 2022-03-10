@@ -1,0 +1,57 @@
+@import "../../../styles/root";
+
+.header {
+    width: 100%;
+    height: $height-header;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    box-shadow: 0 0 10px rgba(191, 197, 197, 0.5);
+    z-index: 99;
+    background: $white-color;
+
+    .nav {
+        width: 90%;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title {
+            width: 20%;
+            text-align: center;
+            line-height: 71.95px;
+            color: var(--text-color);
+            font-size: 2.4rem;
+            font-weight: 400;
+            user-select: none;
+
+            .link {
+                text-decoration: none;
+                @include linerText(45deg, #06619c, #02da97);
+            }
+        }
+
+        .listItem {
+            // width: 65%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            list-style: none;
+
+            .item {
+                padding: 0 20px;
+                .link {
+                    text-decoration: none;
+                    color: black;
+                    font-size: 1.5rem;
+                    text-transform: uppercase;
+                    background: -webkit-linear-gradient(45deg, #06619c, #e2267e);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}
