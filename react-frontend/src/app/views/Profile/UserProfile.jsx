@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import Home from './Home/Home';
 import AboutMe from './AboutMe/AboutMe';
 import Education from './Education/Education';
+import Skills from './Skills/Skills';
 
 function Introduce() {
 
@@ -14,6 +15,7 @@ function Introduce() {
                 <Home />
                 <AboutMe />
                 <Education />
+                <Skills />
             </div>
         </>
     );
