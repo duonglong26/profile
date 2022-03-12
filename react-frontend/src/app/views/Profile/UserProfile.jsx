@@ -5,6 +5,7 @@ import Home from './Home/Home';
 import AboutMe from './AboutMe/AboutMe';
 import Education from './Education/Education';
 import Skills from './Skills/Skills';
+import Experience from './Experience/Experience';
 
 function Introduce() {
 
@@ -16,6 +17,7 @@ function Introduce() {
                 <AboutMe />
                 <Education />
                 <Skills />
+                <Experience />
             </div>
         </>
     );

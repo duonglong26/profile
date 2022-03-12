@@ -32,7 +32,7 @@ const listMembers = [
         id: 2,
         name: "Tuấn Hiển",
         img: '#',
-        job: "Grap",
+        job: "Grab",
         linkFb: null,
         linkTwitter: null,
         linkInstagram: null,
