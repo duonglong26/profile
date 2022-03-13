@@ -3,7 +3,7 @@ import styles from './_experience.module.scss'
 
 function Experience() {
     return (
-        <div className={styles.experience}>
+        <div className={styles.experience} id='experience'>
             <p className={styles.title}>Experience</p>
             <div className={styles.products}>
                 <div className={styles.product}>

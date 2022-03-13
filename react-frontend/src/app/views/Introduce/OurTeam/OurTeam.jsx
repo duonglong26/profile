@@ -95,7 +95,7 @@ function OurTeam() {
                                     />
                                 } */}
                                 <Link
-                                    to={ROOT_PATH + "/user-profile"}
+                                    to={ROOT_PATH + "/user"}
                                     className={styles.name}
                                 >
                                     <FaUser
@@ -105,7 +105,7 @@ function OurTeam() {
                             </div>
                             <div className={styles.cardContent}>
                                 <Link
-                                    to={ROOT_PATH + "/user-profile"}
+                                    to={ROOT_PATH + "/user"}
                                     className={styles.name}
                                 >
                                     {member?.name}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Home() {
 
     return (
-        <div className={styles.home}>
+        <div className={styles.home} id='home'>
             <div className={styles.content}>
                 <span className={styles.welcome}>
                     Hello, my name is

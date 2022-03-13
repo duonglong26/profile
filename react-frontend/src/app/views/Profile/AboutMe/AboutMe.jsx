@@ -6,7 +6,7 @@ function AboutMe() {
     return (
         <>
             {/* Thông tin cá nhân, nghề nghiệp */}
-            <div className={styles.aboutMe}>
+            <div className={styles.aboutMe} id='about-me'>
                 <div className={styles.info}>
                     <div className={styles.content}>
                         <h2 className={styles.name}>

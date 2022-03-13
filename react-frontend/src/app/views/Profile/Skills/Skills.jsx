@@ -173,7 +173,7 @@ function Skills() {
 
   return (
     <>
-      <div className={styles.skills}>
+      <div className={styles.skills} id='skills'>
         <p className={styles.title}>Skills</p>
 
         {/* Danh sách các loại kỹ năng */}
@@ -207,7 +207,6 @@ function Skills() {
             >
               {/* Biểu tượng của ngôn ngữ */}
               <div className={styles.boxSymbol}>
-                {/* <Fa.FaJava className={styles.symbol}/> */}
                 {handleShowIcon(technology?.icon)}
               </div>
               {/* Tên của ngôn ngữ */}

@@ -50,7 +50,9 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        flex-grow: 3;
+        // flex-grow: 3;
+        animation: growth ease-in 0.5s;
+        will-change: opacity, transform;
 
         .item {
             width: 350px;
@@ -71,7 +73,7 @@
                 .symbol {
                     width: inherit;
                     height: inherit;
-                // @include linerText(45deg, red, blue)
+                    // @include linerText(45deg, red, blue)
 
                     color: rgb(50, 62, 77);
                 }
@@ -84,7 +86,6 @@
                 font-size: 2.3rem;
                 font-weight: 600;
                 text-align: center;
-
             }
 
             .details {
@@ -92,8 +93,8 @@
                 height: 15%;
                 display: flex;
                 align-items: center;
-                justify-content: center;     
-                opacity: 0.7;   
+                justify-content: center;
+                opacity: 0.7;
             }
         }
     }

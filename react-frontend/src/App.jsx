@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path={ROOT_PATH + "/"} element={<Introduce />} />
-        <Route path={ROOT_PATH + "/user-profile"} element={<UserProfile />} />
+        <Route path={ROOT_PATH + "/user"} element={<UserProfile />} />
       </Routes>
     </>
   );

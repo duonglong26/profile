@@ -19,32 +19,29 @@ const schools = [
 function Education() {
 
     return (
-        <>
-            <div className={styles.educations}>
-                <p className={styles.title}>Education</p>
-                <div className={styles.schools}>
-                    {schools.map((school) => (
-                        <div
-                            className={styles.school}
-                            key={school.id}
-                        >
-                            <p className={styles.name}>
-                                {school?.name}
-                            </p>
-                            <p className={styles.specialized}>
-                                <span>Specialized: </span>
-                                {school?.specialized}
-                            </p>
-                            <p className={styles.course}>
-                                <span>Course: </span>
-                                {school?.course}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-
+        <div className={styles.educations} id='education'>
+            <p className={styles.title}>Education</p>
+            <div className={styles.schools}>
+                {schools.map((school) => (
+                    <div
+                        className={styles.school}
+                        key={school.id}
+                    >
+                        <p className={styles.name}>
+                            {school?.name}
+                        </p>
+                        <p className={styles.specialized}>
+                            <span>Specialized: </span>
+                            {school?.specialized}
+                        </p>
+                        <p className={styles.course}>
+                            <span>Course: </span>
+                            {school?.course}
+                        </p>
+                    </div>
+                ))}
             </div>
-        </>
+        </div>
     );
 }
 
