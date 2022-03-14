@@ -23,6 +23,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
 
         .memberCard {
             width: 325px;
@@ -114,9 +115,9 @@
 
 // Thiết bị màn hình nhỏ hơn 900px
 @media only screen and (max-width: 899px) {
-    .listMember {
-        flex-wrap: wrap;
-    }
+    // .listMember {
+    //     flex-wrap: wrap;
+    // }
 }
 
 // Thiết bị màn hình nhỏ hơn 768px
