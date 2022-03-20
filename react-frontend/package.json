@@ -2,7 +2,8 @@
   "name": "profile",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://duonglong26.github.io/profile/",
+  "proxy":"http://localhost:4200",
+  "homepage": "http://localhost:3000",
   "dependencies": {
     "@fontsource/nunito-sans": "^4.5.3",
     "@testing-library/jest-dom": "^5.16.2",
