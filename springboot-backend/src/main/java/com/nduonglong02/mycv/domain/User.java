@@ -1,26 +1,45 @@
 package com.nduonglong02.mycv.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.globits.core.domain.BaseObject;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.persistence.Table;
 
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.GenerationType.AUTO;
-
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
-public class User {
-    @Id @GeneratedValue(strategy = AUTO)
-    private Long id;
+@Entity
+@Table(name = "user")
+public class User extends BaseObject {
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

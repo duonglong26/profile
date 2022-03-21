@@ -1,15 +1,15 @@
 package com.nduonglong02.mycv.service;
 
 
-import com.nduonglong02.mycv.domain.Role;
-import com.nduonglong02.mycv.domain.User;
+import com.nduonglong02.mycv.dto.UserDto;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserService {
-    User saveUser(User user);
-    Role saveRole(Role role);
-    void addRoleToUser(String username, String roleName);
-    User getUser(String username);
-    List<User> getUsers();
+    UserDto saveOrUpdate(UserDto user);
+    List<UserDto> getUsers();
+    UserDto getUserById(UUID userId);
+    UserDto getUserByUsername(String username);
+    Boolean checkExitsAccount(String username);
 }

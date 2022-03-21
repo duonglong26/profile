@@ -6,19 +6,20 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nduonglong02.mycv.domain.Role;
-import com.nduonglong02.mycv.domain.User;
+import com.nduonglong02.mycv.dto.UserDto;
+import com.nduonglong02.mycv.repository.UserRoleRepository;
 import com.nduonglong02.mycv.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,33 +30,11 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/api")
 @RequiredArgsConstructor
-public class UserResource {
+@RequestMapping("/api/")
+public class TokenController {
     private final UserService userService;
-
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok().body(userService.getUsers());
-    }
-
-    @PostMapping("/user/save")
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(userService.saveUser(user));
-    }
-
-    @PostMapping("/role/save")
-    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
-        return ResponseEntity.created(uri).body(userService.saveRole(role));
-    }
-
-    @PostMapping("/role/addtouser")
-    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
-        userService.addRoleToUser(form.getUsername(), form.getRoleName());
-        return ResponseEntity.ok().build();
-    }
+    private final UserRoleRepository userRoleRepository;
 
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -67,20 +46,25 @@ public class UserResource {
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(refresh_token);
                 String username = decodedJWT.getSubject();
-                User user = userService.getUser(username);
-                String access_token = JWT.create()
-                        .withSubject(user.getUsername())
-                        .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
-                        .withIssuer(request.getRequestURL().toString())
-                        .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
-                        .sign(algorithm);
-                /*response.setHeader("access_token", access_token);
-                response.setHeader("refresh_token", refresh_token);*/
-                Map<String, String> tokens = new HashMap<>();
-                tokens.put("access_token", access_token);
-                tokens.put("refresh_token", refresh_token);
-                response.setContentType(APPLICATION_JSON_VALUE);
-                new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+                UserDto user = userService.getUserByUsername(username);
+                if (user != null) {
+                    List<Role> roleList = userRoleRepository.findByUserId(user.getId());
+                    if (!CollectionUtils.isEmpty(roleList)) {
+                        String access_token = JWT.create()
+                                .withSubject(user.getUsername())
+                                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                                .withIssuer(request.getRequestURL().toString())
+                                .withClaim("roles", roleList.stream().map(Role::getName).collect(Collectors.toList()))
+                                .sign(algorithm);
+                        /*response.setHeader("access_token", access_token);
+                        response.setHeader("refresh_token", refresh_token);*/
+                        Map<String, String> tokens = new HashMap<>();
+                        tokens.put("access_token", access_token);
+                        tokens.put("refresh_token", refresh_token);
+                        response.setContentType(APPLICATION_JSON_VALUE);
+                        new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+                    }
+                }
             } catch (Exception exception) {
                 response.setHeader("error", exception.getMessage());
                 response.setStatus(FORBIDDEN.value());

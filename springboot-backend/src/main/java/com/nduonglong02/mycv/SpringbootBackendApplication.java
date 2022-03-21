@@ -1,7 +1,10 @@
 package com.nduonglong02.mycv;
 
-import com.nduonglong02.mycv.domain.Role;
-import com.nduonglong02.mycv.domain.User;
+import com.nduonglong02.mycv.dto.RoleDto;
+import com.nduonglong02.mycv.dto.UserDto;
+import com.nduonglong02.mycv.dto.UserRoleDto;
+import com.nduonglong02.mycv.service.RoleService;
+import com.nduonglong02.mycv.service.UserRoleService;
 import com.nduonglong02.mycv.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,11 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.ArrayList;
-
-//@CrossOrigin("http://localhost:3000")
 @SpringBootApplication
 public class SpringbootBackendApplication {
 
@@ -26,12 +25,12 @@ public class SpringbootBackendApplication {
     }
 
     @Bean
-    CommandLineRunner run(UserService userService) {
+    CommandLineRunner run(UserService userService, RoleService roleService, UserRoleService userRoleService) {
         return args -> {
-            if (userService.getUser("admin") == null) {
-                userService.saveRole(new Role(null, "ROLE_ADMIN"));
-                userService.saveUser(new User(null, "admin", "admin", "1", new ArrayList<>()));
-                userService.addRoleToUser("admin", "ROLE_ADMIN");
+            if (!userService.checkExitsAccount("admin")) {
+                RoleDto role = roleService.saveOrUpdate(new RoleDto("ROLE_ADMIN"));
+                UserDto user = userService.saveOrUpdate(new UserDto("admin", "admin", "1"));
+                userRoleService.saveUserRole(new UserRoleDto(role, user));
             }
         };
     }

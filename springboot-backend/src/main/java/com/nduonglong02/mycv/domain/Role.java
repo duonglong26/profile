@@ -1,18 +1,29 @@
 package com.nduonglong02.mycv.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.globits.core.domain.BaseObject;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Table;
 
-import static javax.persistence.GenerationType.AUTO;
-
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
-public class Role {
-    @Id @GeneratedValue(strategy = AUTO)
-    private Long id;
+@Entity
+@Table(name = "role")
+public class Role extends BaseObject {
+    @Column(name = "name")
     private String name;
+
+    public Role() {
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
