@@ -1,7 +1,7 @@
-package com.nduonglong02.mycv.security;
+package com.nduonglong02.mycv.config.security;
 
-import com.nduonglong02.mycv.filter.CustomAuthenticationFilter;
-import com.nduonglong02.mycv.filter.CustomAuthorizationFilter;
+import com.nduonglong02.mycv.config.filter.CustomAuthenticationFilter;
+import com.nduonglong02.mycv.config.filter.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

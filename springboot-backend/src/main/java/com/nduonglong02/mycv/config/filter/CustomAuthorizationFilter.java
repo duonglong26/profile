@@ -1,4 +1,4 @@
-package com.nduonglong02.mycv.filter;
+package com.nduonglong02.mycv.config.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
