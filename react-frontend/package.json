@@ -2,7 +2,7 @@
   "name": "profile",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:4200",
+  "proxy":"http://localhost:9999",
   "homepage": "http://localhost:3000",
   "dependencies": {
     "@fontsource/nunito-sans": "^4.5.3",

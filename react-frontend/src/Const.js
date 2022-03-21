@@ -1,1 +1,1 @@
-export const ROOT_PATH = "/profile";
+export const ROOT_PATH = "";
