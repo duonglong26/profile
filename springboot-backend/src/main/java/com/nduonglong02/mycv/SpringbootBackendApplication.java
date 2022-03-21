@@ -29,7 +29,7 @@ public class SpringbootBackendApplication {
         return args -> {
             if (!userService.checkExitsAccount("admin")) {
                 RoleDto role = roleService.saveOrUpdate(new RoleDto("ROLE_ADMIN"));
-                UserDto user = userService.saveOrUpdate(new UserDto("admin", "admin", "1"));
+                UserDto user = userService.saveOrUpdate(new UserDto("admin", "1"));
                 userRoleService.saveUserRole(new UserRoleDto(role, user));
             }
         };

@@ -2,13 +2,14 @@ package com.nduonglong02.mycv.dto;
 
 import com.globits.core.dto.BaseObjectDto;
 import com.nduonglong02.mycv.domain.UserRole;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class UserRoleDto extends BaseObjectDto {
     private RoleDto role;
     private UserDto user;
-
-    public UserRoleDto() {
-    }
 
     public UserRoleDto(RoleDto role, UserDto user) {
         this.role = role;
@@ -27,19 +28,4 @@ public class UserRoleDto extends BaseObjectDto {
         }
     }
 
-    public RoleDto getRole() {
-        return role;
-    }
-
-    public void setRole(RoleDto role) {
-        this.role = role;
-    }
-
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
 }

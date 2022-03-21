@@ -1,16 +1,18 @@
 package com.nduonglong02.mycv.domain;
 
 import com.globits.core.domain.BaseObject;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User extends BaseObject {
-    @Column(name = "name")
-    private String name;
 
     @Column(name = "username")
     private String username;
@@ -18,28 +20,20 @@ public class User extends BaseObject {
     @Column(name = "password")
     private String password;
 
-    public String getName() {
-        return name;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "personal_information_id")
+    private PersonalInformation personalInformation;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "introduce")
+    private Introduce introduce;
 
-    public String getUsername() {
-        return username;
-    }
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Education> educationList;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Skill> skillList;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Project> projectList;
 }
