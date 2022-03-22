@@ -1,15 +1,18 @@
 package com.nduonglong02.mycv.domain;
 
 import com.globits.core.domain.BaseObject;
-import lombok.Data;
+import com.nduonglong02.mycv.dto.PersonalInformationDto;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "personal_information")
@@ -48,4 +51,17 @@ public class PersonalInformation extends BaseObject {
     @Column(name = "phone")
     private String phone;
 
+    public PersonalInformation(PersonalInformationDto dto) {
+        this.firstName = dto.getFirstName();
+        this.lastName = dto.getLastName();
+        this.dateOfBirth = dto.getDateOfBirth();
+        this.address = dto.getAddress();
+        this.job = dto.getJob();
+        this.linkFacebook = dto.getLinkFacebook();
+        this.linkInstagram = dto.getLinkInstagram();
+        this.linkTwitter = dto.getLinkTwitter();
+        this.linkGithub = dto.getLinkGithub();
+        this.email = dto.getEmail();
+        this.phone = dto.getPhone();
+    }
 }

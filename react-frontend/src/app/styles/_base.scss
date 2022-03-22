@@ -38,3 +38,53 @@ html {
     background: linear-gradient(to right, #38f9d7, #43e97b);
     box-shadow: -0.5px 8px 25px rgb(102, 172, 194);
 }
+
+.boxIcon {
+    width: 50px;
+    height: 50px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 100;
+    right: 50px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(149, 163, 150);
+        transition: all 0.3s ease;
+    }
+
+    &:active {
+        color: white;
+        background: rgb(72, 102, 80);
+        transition: all 0.3s ease;
+    }
+
+    .iconPen {
+        font-size: 2.4rem;
+    }
+}
+
+.boxClose {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    right: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2.5rem;
+    border-bottom-left-radius: 50px;
+
+    .iconClose {
+        color: rgb(150, 47, 47);
+        position: relative;
+        top: -5px;
+        right: -5px;
+    }
+}

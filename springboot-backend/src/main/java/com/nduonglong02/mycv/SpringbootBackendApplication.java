@@ -28,6 +28,9 @@ public class SpringbootBackendApplication {
     CommandLineRunner run(UserService userService, RoleService roleService, UserRoleService userRoleService) {
         return args -> {
             if (!userService.checkExitsAccount("admin")) {
+//                other role
+                roleService.saveOrUpdate(new RoleDto("ROLE_USER"));
+//                admin
                 RoleDto role = roleService.saveOrUpdate(new RoleDto("ROLE_ADMIN"));
                 UserDto user = userService.saveOrUpdate(new UserDto("admin", "1"));
                 userRoleService.saveUserRole(new UserRoleDto(role, user));

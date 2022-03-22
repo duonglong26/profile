@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/role")
 @RequiredArgsConstructor
 public class RoleController {
     private final RoleService roleService;
 
-    @PostMapping("/role/save")
+    @PostMapping("/save")
     public ResponseEntity<RoleDto> saveRole(@RequestBody RoleDto dto) {
         RoleDto result = roleService.saveOrUpdate(dto);
         return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);

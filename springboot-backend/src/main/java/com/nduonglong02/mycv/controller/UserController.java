@@ -1,7 +1,5 @@
 package com.nduonglong02.mycv.controller;
 
-import com.nduonglong02.mycv.domain.User;
-import com.nduonglong02.mycv.dto.RoleDto;
 import com.nduonglong02.mycv.dto.UserDto;
 import com.nduonglong02.mycv.service.UserService;
 import lombok.RequiredArgsConstructor;

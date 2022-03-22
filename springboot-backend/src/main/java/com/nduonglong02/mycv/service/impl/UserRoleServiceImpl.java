@@ -13,6 +13,8 @@ import com.nduonglong02.mycv.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UserRoleServiceImpl implements UserRoleService {
@@ -20,21 +22,21 @@ public class UserRoleServiceImpl implements UserRoleService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-//    @Override
-//    public UserRoleDto saveUserRole(UserDto userReq, RoleDto roleReq) {
-//        if (userReq != null && userReq.getId() != null && roleReq != null && roleReq.getId() != null) {
-//            UserRole result = new UserRole();
-//            User userRes = userRepository.findById(userReq.getId()).orElse(null);
-//            Role roleRes = roleRepository.findById(roleReq.getId()).orElse(null);
-//            if (userRes != null && roleRes != null) {
-//                result.setUser(userRes);
-//                result.setRole(roleRes);
-//                result = userRoleRepository.save(result);
-//                return new UserRoleDto(result);
-//            }
-//        }
-//        return null;
-//    }
+    @Override
+    public UserRole saveUserRole(UUID userId, UUID roleId) {
+        if (userId != null && roleId != null) {
+            UserRole result = new UserRole();
+            User userRes = userRepository.findById(userId).orElse(null);
+            Role roleRes = roleRepository.findById(roleId).orElse(null);
+            if (userRes != null && roleRes != null) {
+                result.setUser(userRes);
+                result.setRole(roleRes);
+                result = userRoleRepository.save(result);
+                return result;
+            }
+        }
+        return null;
+    }
 
     @Override
     public UserRoleDto saveUserRole(UserRoleDto dto) {

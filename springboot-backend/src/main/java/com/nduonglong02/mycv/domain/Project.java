@@ -1,12 +1,14 @@
 package com.nduonglong02.mycv.domain;
 
 import com.globits.core.domain.BaseObject;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "project")
@@ -21,7 +23,9 @@ public class Project extends BaseObject {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
 }
+
+

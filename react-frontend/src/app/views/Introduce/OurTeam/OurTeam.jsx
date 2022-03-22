@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import clsx from 'clsx';
 import styles from './_our-team.module.scss';
@@ -8,6 +8,7 @@ import { ROOT_PATH } from "../../../../Const";
 import { FaUser } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getAllProfile } from './ProfileService';
 
 toast.configure({
     autoClose: 3000,
@@ -51,6 +52,24 @@ const listMembers = [
 ]
 
 function OurTeam() {
+    const [listProfile, setListProfile] = useState([])
+
+    console.log(listProfile)
+    useEffect(() => {
+        if (localStorage.getItem('access_token')) {
+            getAllProfile().then((res) => {
+                if (res?.data) {
+                    // console.log(res.data);
+                    setListProfile(res.data);
+                    toast.success("Got data");
+                    return;
+                }
+                throw Error(res.status);
+            }).catch(function (error) {
+                toast.warning("Server error");
+            });
+        }
+    }, [])
 
     const handleLink = (url, type) => {
         console.log(url);
@@ -80,10 +99,10 @@ function OurTeam() {
                 <div className={styles.title}>
                     Our Team
                 </div>
-                {/* Danh sách thành viên */}
+                {/* List profile */}
                 <div className={styles.listMember}>
                     {/* Thông tin thành viên */}
-                    {listMembers.map((member) => (
+                    {listProfile.map((member) => (
                         <div key={member.id} className={styles.memberCard}>
                             <div className={styles.cardImg}>
                                 {/* {member?.img &&
@@ -108,10 +127,10 @@ function OurTeam() {
                                     to={ROOT_PATH + "/user"}
                                     className={styles.name}
                                 >
-                                    {member?.name}
+                                    {member?.personalInformation?.lastName}
                                 </Link>
                                 <p className={styles.job}>
-                                    {member?.job}
+                                    {member?.personalInformation?.job}
                                 </p>
 
                                 {/* Danh sách link liên kết mạng xã hội */}

@@ -2,11 +2,12 @@ package com.nduonglong02.mycv.dto;
 
 import com.globits.core.dto.BaseObjectDto;
 import com.nduonglong02.mycv.domain.Role;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class RoleDto extends BaseObjectDto {
     private String name;

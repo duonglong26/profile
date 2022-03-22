@@ -1,15 +1,16 @@
 package com.nduonglong02.mycv.domain;
 
 import com.globits.core.domain.BaseObject;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "introduce")
@@ -30,3 +31,4 @@ public class Introduce extends BaseObject {
     private String descriptionTask;
 
 }
+

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import static java.util.Arrays.stream;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
@@ -35,7 +36,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         } else {
             String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                try {
+//                try {
                     String token = authorizationHeader.substring("Bearer ".length());
                     Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                     JWTVerifier verifier = JWT.require(algorithm).build();
@@ -49,16 +50,17 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                     filterChain.doFilter(request, response);
-                } catch (Exception exception) {
-                    log.error("Error logging in: {}", exception.getMessage());
-                    response.setHeader("error", exception.getMessage());
-                    response.setStatus(FORBIDDEN.value());
-                    // response.sendError(FORBIDDEN.value());
-                    Map<String, String> error = new HashMap<>();
-                    error.put("error_message", exception.getMessage());
-                    response.setContentType(APPLICATION_JSON_VALUE);
-                    new ObjectMapper().writeValue(response.getOutputStream(), error);
-                }
+//                } catch (Exception exception) {
+//                    log.error("Error logging in: {}", exception.getMessage());
+//                    response.setHeader("error", exception.getMessage());
+//                    response.setStatus(INTERNAL_SERVER_ERROR.value());
+////                    response.setStatus(FORBIDDEN.value());
+//                    // response.sendError(FORBIDDEN.value());
+//                    Map<String, String> error = new HashMap<>();
+//                    error.put("error_message", exception.getMessage());
+//                    response.setContentType(APPLICATION_JSON_VALUE);
+//                    new ObjectMapper().writeValue(response.getOutputStream(), error);
+//                }
             } else {
                 filterChain.doFilter(request, response);
             }

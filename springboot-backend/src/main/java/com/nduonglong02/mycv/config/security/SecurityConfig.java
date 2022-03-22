@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login/**", "/api/token/refresh/**").permitAll()
 //                .antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER")
                 .antMatchers(GET, "/api/user/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/user/**").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated();
 
 //        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));

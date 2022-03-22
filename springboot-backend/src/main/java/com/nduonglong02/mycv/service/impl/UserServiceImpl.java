@@ -2,9 +2,12 @@ package com.nduonglong02.mycv.service.impl;
 
 import com.nduonglong02.mycv.domain.Role;
 import com.nduonglong02.mycv.domain.User;
+import com.nduonglong02.mycv.domain.UserRole;
+import com.nduonglong02.mycv.dto.RoleDto;
 import com.nduonglong02.mycv.dto.UserDto;
 import com.nduonglong02.mycv.repository.UserRepository;
 import com.nduonglong02.mycv.repository.UserRoleRepository;
+import com.nduonglong02.mycv.service.UserRoleService;
 import com.nduonglong02.mycv.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -30,6 +34,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserRoleService userRoleService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -62,6 +67,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user.setPassword(passwordEncoder.encode(dto.getPassword()));
             log.info("Saving new user {} to the database", dto.getUsername());
             user = userRepository.save(user);
+
+//            Save userRole
+            if (!CollectionUtils.isEmpty(dto.getRoleList()) && user.getId() != null) {
+                user.setUserRoleList(new ArrayList<>());
+                for (RoleDto role : dto.getRoleList()) {
+                    user.getUserRoleList().add(userRoleService.saveUserRole(user.getId(), role.getId()));
+                }
+            }
             return new UserDto(user);
         }
         return null;
