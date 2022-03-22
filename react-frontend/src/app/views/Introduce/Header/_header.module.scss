@@ -45,12 +45,11 @@
         justify-content: space-between;
 
         .title {
-            width: 20%;
+            min-width: 20%;
             text-align: center;
-            line-height: 71.95px;
             color: var(--text-color);
             font-size: 2.4rem;
-            font-weight: 400;
+            font-weight: 500;
             user-select: none;
             border-radius: 90px;
 
@@ -62,8 +61,20 @@
     }
 }
 
-// Thiết bị màn hình nhỏ hơn 1440px
+// Thiết bị màn hình nhỏ hơn 1200px
 @media only screen and (max-width: 1199px) {
+    .header {
+        height: 80px;
+        .nav {
+            width: 100%;
+            .title {
+                .link {
+                    font-size: 30px;
+                    padding-left: 30px;
+                }
+            }
+        }
+    }
 }
 
 // Thiết bị màn hình nhỏ hơn 1024px
@@ -83,15 +94,29 @@
     .header {
         height: 50px;
         .nav {
-            width: 90%;
+            width: 100%;
+            .link {
+                font-size: 25px;
+            }
         }
     }
 }
 
 // Thiết bị màn hình nhỏ hơn 480px
 @media only screen and (max-width: 479px) {
+    .header {
+        // height: 70px;
+        .nav {
+            width: 100%;
+            .title {
+                .link {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
 }
-
 // Thiết bị màn hình nhỏ hơn 320px
 @media only screen and (max-width: 319px) {
+    
 }
