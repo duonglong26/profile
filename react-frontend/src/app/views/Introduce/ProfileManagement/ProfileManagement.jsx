@@ -52,7 +52,9 @@ function ProfileManagement() {
     }
 
     const handleLink = (url, type) => {
-        if (url === null) {
+        // console.log("Link:/" + url + "/");
+        // console.log("Type" + type)
+        if (url === null || url === "") {
             switch (type) {
                 case 'facebook':
                     toast.error("Facebook link not found");
@@ -69,6 +71,8 @@ function ProfileManagement() {
                 default:
                     return;
             }
+        } else {
+            toast.info("Go to the URL: " + url);
         }
     }
 
@@ -127,14 +131,17 @@ function ProfileManagement() {
                         {listProfile.map((member) => (
                             <div key={member.id} className={styles.memberCard}>
                                 {/* icon delete */}
-                                <div
-                                    className={styles.boxIconTrash}
-                                    onClick={() => handleOpenFormDelete(member.id)}
-                                >
-                                    <FaTrashAlt
-                                        className={styles.icon}
-                                    />
-                                </div>
+                                {isLogin &&
+                                    <div
+                                        className={styles.boxIconTrash}
+                                        onClick={() => handleOpenFormDelete(member.id)}
+                                    >
+                                        <FaTrashAlt
+                                            className={styles.icon}
+                                        />
+                                    </div>
+                                }
+                                {/* content */}
                                 <div className={styles.cardImg}>
                                     <Link
                                         to={ROOT_PATH + "/user"}
