@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface ProfileService extends GenericService<Profile, UUID> {
     ProfileDto saveOrUpdate(ProfileDto dto);
     List<ProfileDto> getAll();
+    Boolean deleteById(UUID id);
 }

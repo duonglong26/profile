@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -30,6 +31,12 @@ public class ProfileController {
     @GetMapping("/all")
     public ResponseEntity<List<ProfileDto>> getAll() {
         List<ProfileDto> result = profileService.getAll();
+        return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteProfile(@PathVariable("id") String id) {
+        Boolean result = profileService.deleteById(UUID.fromString(id));
         return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 }
