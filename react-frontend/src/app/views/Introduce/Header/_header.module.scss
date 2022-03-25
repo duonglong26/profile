@@ -79,6 +79,15 @@
 
 // Thiết bị màn hình nhỏ hơn 1024px
 @media only screen and (max-width: 1023px) {
+    .header {
+        height: 50px;
+        .nav {
+            width: 100%;
+            .link {
+                font-size: 25px;
+            }
+        }
+    }
 }
 
 // Thiết bị màn hình nhỏ hơn 900px

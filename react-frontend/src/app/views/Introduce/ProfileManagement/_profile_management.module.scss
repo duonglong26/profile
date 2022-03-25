@@ -33,6 +33,16 @@
             display: flex;
             flex-direction: column;
             border-radius: 10px;
+            position: relative;
+
+            &:hover {
+                background-color: rgba(226, 230, 236, 0.4);
+                box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+
+                .boxIconTrash {
+                    display: block;
+                }
+            }
 
             .cardImg {
                 width: 100%;
@@ -52,7 +62,7 @@
 
                 .iconUser {
                     padding: 15px;
-                    color:rgb(31, 62, 77);
+                    color: rgb(31, 62, 77);
                 }
             }
 
@@ -88,7 +98,6 @@
                     text-align: center;
                     font-size: 19px;
                     .icon {
-
                         background: $black-color;
                         color: $white-color;
                         padding: 10px;
@@ -101,6 +110,43 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.addMember {
+    width: 325px;
+    height: 535px;
+    margin: 0 60px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+
+    .box {
+        width: 60px;
+        height: 60px;
+        background: #63b1bb;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3.5rem;
+        color: rgb(248, 249, 250);
+        box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0px 1px 27px -3px rgba(0, 255, 255, 0.6);
+        }
+
+        &:active {
+            width: 95px;
+            height: 95px;
         }
     }
 }

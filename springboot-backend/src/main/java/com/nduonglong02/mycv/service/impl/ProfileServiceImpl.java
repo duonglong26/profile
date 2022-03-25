@@ -44,7 +44,6 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
                 setValuePersonalInformation(entity.getPersonalInformation(), dto.getPersonalInformation());
             }
 
-            log.info("====================================");
             entity = profileRepository.save(entity);
             return new ProfileDto(entity);
         }

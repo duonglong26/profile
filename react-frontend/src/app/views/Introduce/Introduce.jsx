@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import Header from './Header/Header';
-import OurTeam from "./OurTeam/OurTeam";
+import ProfileManagement from "./ProfileManagement/ProfileManagement";
 
 function Introduce() {
 
     return (
         <>
             <Header />
-            <OurTeam />
+            <ProfileManagement />
         </>
     );
 }
