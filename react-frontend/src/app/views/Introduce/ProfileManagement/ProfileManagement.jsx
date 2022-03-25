@@ -28,28 +28,30 @@ function ProfileManagement() {
     const [isOpenFormInputProfile, setIsOpenFormInputProfile] = useState(false);
     const [isOpenFormAcceptDelete, setIsOpenFormAcceptDelete] = useState(false);
     const [currentIdDelete, setCurrentIdDelete] = useState("");
+    const [isLogin, setIslogin] = useState(false);
     useEffect(() => {
         handleLoadPageData();
     }, [])
 
-    const handleLoadPageData = () => {
+    useEffect(() => {
         if (localStorage.getItem('access_token')) {
-            getAllProfile().then((res) => {
-                if (res?.data) {
-                    setListProfile(res.data);
-                    // toast.success("Loaded data");
-                    return;
-                }
-                throw Error(res.status);
-            }).catch(function (error) {
-                toast.warning("Server error");
-            });
+            setIslogin(true);
         }
+    }, [])
+    const handleLoadPageData = () => {
+        getAllProfile().then((res) => {
+            if (res?.data) {
+                setListProfile(res.data);
+                // toast.success("Loaded data");
+                return;
+            }
+            throw Error(res.status);
+        }).catch(function (error) {
+            toast.warning("Server error");
+        });
     }
 
     const handleLink = (url, type) => {
-        console.log(url);
-        console.log(type);
         if (url === null) {
             switch (type) {
                 case 'facebook':
@@ -185,14 +187,17 @@ function ProfileManagement() {
                                 </div>
                             </div>
                         ))}
-                        <div className={clsx(styles.addMember)}>
-                            <div
-                                onClick={() => handleOpenFormInput()}
-                                className={styles.box}
-                            >
-                                <FaPlus />
+
+                        {isLogin &&
+                            <div className={clsx(styles.addMember)}>
+                                <div
+                                    onClick={() => handleOpenFormInput()}
+                                    className={styles.box}
+                                >
+                                    <FaPlus />
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </ThemeContext.Provider>

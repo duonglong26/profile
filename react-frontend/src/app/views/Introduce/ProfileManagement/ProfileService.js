@@ -4,7 +4,7 @@ export const getAllProfile = () => {
         method: 'get',
         url: '/api/profile/all',
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+            // 'Authorization': 'Bearer ' + localStorage.getItem('access_token')
         }
     };
     return axios(config);
