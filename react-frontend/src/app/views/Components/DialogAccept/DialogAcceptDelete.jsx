@@ -21,6 +21,7 @@ function DialogAcceptDelete() {
   return (
     <div className={styles.dialogAcceptDelete}>
       <div className={styles.dialog}>
+        <h1>ARE YOU SURE DELETE</h1>
         {/* icon delete */}
         <div
           className={styles.box}
@@ -36,13 +37,13 @@ function DialogAcceptDelete() {
             className={clsx(styles.btn, styles.error)}
             onClick={() => handeDelete()}
           >
-            DELETE
+            YES
           </button>
           <button
             onClick={() => handleClose()}
             className={clsx(styles.btn, styles.warning)}
           >
-            CANCEL
+            NO
           </button>
         </div>
       </div>

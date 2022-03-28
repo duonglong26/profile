@@ -115,7 +115,7 @@ html {
 // Form input
 .form {
     position: relative;
-    width: 30rem;
+    width: $width-form-input;
     height: 4.5rem;
 
     &Input {

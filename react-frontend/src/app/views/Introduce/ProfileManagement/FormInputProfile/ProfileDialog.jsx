@@ -5,6 +5,7 @@ import { ThemeContext } from '../ProfileManagement';
 import { newProfile } from '../../ProfileManagement/ProfileService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaMinusCircle, FaPlus } from "react-icons/fa";
 
 toast.configure({
     autoClose: 3000,
@@ -30,10 +31,25 @@ function ProfileDialog() {
     const [phone, setPhone] = useState('');
     // Inrtroduce-AboutMe
     const [sentenceWelcome, setSentenceWelcome] = useState('');
-    const [introductionUser, setintroductionUser] = useState('');
+    const [introductionUser, setIntroductionUser] = useState('');
     const [titleAboutMe, setTitleAboutMe] = useState('');
     const [task, setTask] = useState('');
     const [descriptionTask, setDescriptionTask] = useState('');
+    // Education
+    const [listSchool, setListSchool] = useState([{
+        schoolName: '',
+        course: '',
+        major: ''
+    }]);
+    const [skillList, setSkillList] = useState([{
+        name: '',
+        technologyList: [{
+            name: '',
+            iconName: '',
+            details: ''
+        }]
+    }]);
+    const [change, setChange] = useState(false);
 
 
     const handleClose = () => {
@@ -75,40 +91,153 @@ function ProfileDialog() {
             case "phone":
                 setPhone(value);
                 break;
+            case "sentenceWelcome":
+                setSentenceWelcome(value);
+                break;
+            case "introductionUser":
+                setIntroductionUser(value);
+                break;
+            case "titleAboutMe":
+                setTitleAboutMe(value);
+                break;
+            case "task":
+                setTask(value);
+                break;
+            case "descriptionTask":
+                setDescriptionTask(value);
+                break;
             default:
                 break;
         }
     }
 
+    const handleChangeSchoolData = (value, source, index) => {
+        setListSchool(prev => {
+            switch (source) {
+                case "schoolName":
+                    prev[index].schoolName = value;
+                    break;
+                case "course":
+                    prev[index].course = value;
+                    break;
+                case "major":
+                    prev[index].major = value;
+                    break;
+                default:
+                    break;
+            }
+            return prev;
+        });
+        setChange(!change);
+    }
+
+
     const validateProfile = () => {
         console.log("Validating..");
-        if (firstName === '') {
-            toast.warning("Let's fill first name");
-            return false;
-        } else if (lastName === '') {
-            toast.warning("Let's fill last name");
-            return false;
-        } else if (job === '') {
-            toast.warning("Let's fill job");
-            return false;
-        } else if (dateOfBirth === null) {
-            toast.warning("Let's fill date of birth");
-            return false;
-        } else if (address === '') {
-            toast.warning("Let's fill address");
-            return false;
-        } else if (email === '') {
-            toast.warning("Let's fill email");
-            return false;
-        } else if (phone === '') {
-            toast.warning("Let's fill phone");
-            return false;
-        }
+        // if (firstName === '') {
+        //     toast.warning("Let's fill first name");
+        //     return false;
+        // } else if (lastName === '') {
+        //     toast.warning("Let's fill last name");
+        //     return false;
+        // } else if (job === '') {
+        //     toast.warning("Let's fill job");
+        //     return false;
+        // } else if (dateOfBirth === null) {
+        //     toast.warning("Let's fill date of birth");
+        //     return false;
+        // } else if (address === '') {
+        //     toast.warning("Let's fill address");
+        //     return false;
+        // } else if (email === '') {
+        //     toast.warning("Let's fill email");
+        //     return false;
+        // } else if (phone === '') {
+        //     toast.warning("Let's fill phone");
+        //     return false;
+        // } else if (sentenceWelcome === '') {
+        //     toast.warning("Let's fill sentence welcome");
+        //     return false;
+        // } else if (introductionUser === '') {
+        //     toast.warning("Let's fill introduction of user");
+        //     return false;
+        // } else if (titleAboutMe === '') {
+        //     toast.warning("Let's fill title of 'About Me'");
+        //     return false;
+        // } else if (task === '') {
+        //     toast.warning("Let's fill task");
+        //     return false;
+        // } else if (descriptionTask === '') {
+        //     toast.warning("Let's fill description task");
+        //     return false;
+        // }
         return true;
     }
 
-    useEffect(() => {
-    }, [])
+    const handleAddSchool = () => {
+        setListSchool([...listSchool, {
+            schoolName: '',
+            course: '',
+            major: ''
+        }])
+    }
+
+    const handleDeleteSchool = (index) => {
+        if (listSchool.length > 1) {
+            let newListSchool = listSchool;
+            newListSchool.splice(index, 1); //delete 1 element from 'index'
+            return setListSchool([...newListSchool]);
+        }
+        toast.warning("At least a school")
+    }
+
+    const handleAddSkill = () => {
+        setSkillList([...skillList, {
+            name: '',
+            technologyList: [{
+                name: '',
+                iconName: '',
+                details: ''
+            }]
+        }])
+    }
+
+    const handleDeleteSkill = (index) => {
+        if (skillList.length > 1) {
+            skillList.splice(index, 1); //delete 1 element from 'index'
+            setChange(!change)
+            return;
+        }
+        toast.warning("At least a skill")
+    }
+
+    const handleChangeSkill = (value, source, indexSkill, indexTech) => {
+        switch (source) {
+            case 'skillName':
+                skillList[indexSkill].name = value;
+                break;
+            case 'technologyName':
+                skillList[indexSkill].technologyList[indexTech].name = value;
+                break;
+            case 'iconName':
+                skillList[indexSkill].technologyList[indexTech].iconName = value;
+                break;
+            case 'details':
+                skillList[indexSkill].technologyList[indexTech].details = value;
+                break;
+            default: break;
+        }
+        setChange(!change);
+    }
+
+    const handleAddTechnoloy = (index) => {
+        skillList[index].technologyList.push({
+            name: '',
+            iconName: '',
+            details: ''
+        })
+        setChange(!change)
+    }
 
     const handleSubmit = () => {
         const obj = {
@@ -124,7 +253,15 @@ function ProfileDialog() {
                 linkGithub: linkGithub,
                 email: email,
                 phone: phone,
-            }
+            },
+            introduce: {
+                sentenceWelcome: sentenceWelcome,
+                introductionUser: introductionUser,
+                titleAboutMe: titleAboutMe,
+                task: task,
+                descriptionTask: descriptionTask,
+            },
+            educationList: listSchool,
         }
 
         if (localStorage.getItem('access_token') && validateProfile()) {
@@ -140,6 +277,15 @@ function ProfileDialog() {
                 toast.warning("Server error");
             });
         }
+    }
+
+    const handleDeleteTechnology = (indexTech, indexSkill) => {
+        if (skillList[indexSkill].technologyList.length > 1) {
+            skillList[indexSkill].technologyList.splice(indexTech, 1); //delete 1 element from 'index'
+            setChange(!change)
+            return;
+        }
+        toast.warning("At least a technology")
     }
 
     return (
@@ -355,7 +501,19 @@ function ProfileDialog() {
                             />
                             <label className={styles.formLabel}>Sentence Welcome</label>
                         </div>
-                        {/* Sentence Welcome */}
+                        {/* Introduction User */}
+                        <div className={styles.form}>
+                            <input
+                                type="text"
+                                className={styles.formInput}
+                                autoComplete="off"
+                                placeholder=" "
+                                value={introductionUser ? introductionUser : ''}
+                                onChange={(input) => handleChange(input.target.value, "introductionUser")}
+                            />
+                            <label className={styles.formLabel}>Introduction Of User</label>
+                        </div>
+                        {/* Title About Me */}
                         <div className={styles.form}>
                             <input
                                 type="text"
@@ -394,60 +552,193 @@ function ProfileDialog() {
                     </div>
 
                     <br />
+                    {/* Education */}
                     <div className={styles.contentBox}>
                         {/* Title Form */}
-                        <label className={styles.formLabelBig}>Introduce</label>
-                        {/* Sentence Welcome */}
-                        <div className={styles.form}>
-                            <input
-                                type="text"
-                                className={styles.formInput}
-                                autoComplete="off"
-                                placeholder=" "
-                                value={sentenceWelcome ? sentenceWelcome : ''}
-                                onChange={(input) => handleChange(input.target.value, "sentenceWelcome")}
-                            />
-                            <label className={styles.formLabel}>Sentence Welcome</label>
+                        <label className={styles.formLabelBig}>Education</label>
+                        {listSchool.map((school, index) => (
+                            <div className={styles.item} key={index}>
+                                <h1>{index + 1}</h1>
+                                {/* School name */}
+                                <div className={styles.form}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={school?.schoolName ? school?.schoolName : ''}
+                                        onChange={(input) => handleChangeSchoolData(input.target.value, "schoolName", index)}
+                                    />
+                                    <label className={styles.formLabel}>School Name</label>
+                                </div>
+                                {/* Course */}
+                                <div className={styles.form}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={school?.course ? school?.course : ''}
+                                        onChange={(input) => handleChangeSchoolData(input.target.value, "course", index)}
+                                    />
+                                    <label className={styles.formLabel}>Course</label>
+                                </div>
+                                <div className={styles.form}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={school?.major ? school?.major : ''}
+                                        onChange={(input) => handleChangeSchoolData(input.target.value, "major", index)}
+                                    />
+                                    <label className={styles.formLabel}>Major</label>
+                                </div>
+                                {/* Delete from list school */}
+                                <div
+                                    className={styles.boxDeleteIcon}
+                                    title="Delete"
+                                    onClick={() => handleDeleteSchool(index)}
+                                >
+                                    <FaMinusCircle
+                                        className={styles.iconTrashCan}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+
+                        {/* Add school to list */}
+                        <div className={styles.boxAddItem}>
+                            <div
+                                className={styles.boxItem}
+                                onClick={() => handleAddSchool()}
+                            >
+                                <FaPlus className={styles.iconAddItem} />
+                            </div>
                         </div>
-                        {/* Sentence Welcome */}
-                        <div className={styles.form}>
-                            <input
-                                type="text"
-                                className={styles.formInput}
-                                autoComplete="off"
-                                placeholder=" "
-                                value={titleAboutMe ? titleAboutMe : ''}
-                                onChange={(input) => handleChange(input.target.value, "titleAboutMe")}
-                            />
-                            <label className={styles.formLabel}>Title About Me</label>
-                        </div>
-                        {/* Task */}
-                        <div className={styles.form}>
-                            <input
-                                type="text"
-                                className={styles.formInput}
-                                autoComplete="off"
-                                placeholder=" "
-                                value={task ? task : ''}
-                                onChange={(input) => handleChange(input.target.value, "task")}
-                            />
-                            <label className={styles.formLabel}>Task</label>
-                        </div>
-                        {/* Description Task */}
-                        <div className={styles.form}>
-                            <input
-                                type="text"
-                                className={styles.formInput}
-                                autoComplete="off"
-                                placeholder=" "
-                                value={descriptionTask ? descriptionTask : ''}
-                                onChange={(input) => handleChange(input.target.value, "descriptionTask")}
-                            />
-                            <label className={styles.formLabel}>Description Task</label>
+                    </div>
+
+                    {/* Skills */}
+                    <div className={styles.contentBox}>
+                        {/* Title Form */}
+                        <label className={styles.formLabelBig}>Skills</label>
+                        {skillList.map((skill, index) => (
+                            <div className={styles.contentBox} key={index}>
+                                {/* Skill name */}
+                                <div
+                                    className={styles.form}
+                                    style={{
+                                        width: "60%",
+                                    }}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={skill?.name ? skill.name : ''}
+                                        onChange={(input) => handleChangeSkill(input.target.value, "skillName", index)}
+                                    />
+                                    <label className={styles.formLabel}>Skill Name</label>
+                                </div>
+
+                                {/* List icon service */}
+                                <div className={styles.listIcon}>
+                                    {/* Remove skill */}
+                                    <div
+                                        className={styles.boxItem}
+                                        onClick={() => handleDeleteSkill(index)}
+                                        title="Remove skill"
+                                    >
+                                        <FaMinusCircle
+                                            className={styles.iconMinus}
+                                        />
+                                    </div>
+                                </div>
+
+                                {skill?.technologyList.map((technology, indexTech) => (
+                                    <div className={styles.item} key={indexTech}>
+                                        <div className={styles.form}>
+                                            <input
+                                                type="text"
+                                                className={styles.formInput}
+                                                autoComplete="off"
+                                                placeholder=" "
+                                                value={technology?.name ? technology?.name : ''}
+                                                onChange={(input) => handleChangeSkill(input.target.value, "technologyName", index, indexTech)}
+                                                required="required"
+                                            />
+                                            <label className={styles.formLabel}>Technology</label>
+                                        </div>
+
+                                        <div className={styles.form}>
+                                            <input
+                                                type="text"
+                                                className={styles.formInput}
+                                                autoComplete="off"
+                                                placeholder=" "
+                                                value={technology?.iconName ? technology?.iconName : ''}
+                                                onChange={(input) => handleChangeSkill(input.target.value, "iconName", index, indexTech)}
+                                            />
+                                            <label className={styles.formLabel}>Icon</label>
+                                        </div>
+
+                                        <div className={styles.form}>
+                                            <input
+                                                type="text"
+                                                className={styles.formInput}
+                                                autoComplete="off"
+                                                placeholder=" "
+                                                value={technology?.details ? technology?.details : ''}
+                                                onChange={(input) => handleChangeSkill(input.target.value, "details", index, indexTech)}
+                                            />
+                                            <label className={styles.formLabel}>Details</label>
+                                        </div>
+
+                                        {/* Delete technology */}
+                                        <div
+                                            className={styles.boxDeleteIcon}
+                                            title="Delete"
+                                            onClick={() => handleDeleteTechnology(indexTech, index)}
+                                        >
+                                            <FaMinusCircle
+                                                className={styles.iconTrashCan}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+
+                                {/* Add technology to list */}
+                                <div
+                                    className={styles.boxAddItem}
+                                    style={{
+                                        margin: "2rem 0"
+                                    }}
+                                >
+                                    <div
+                                        className={styles.boxItem}
+                                        onClick={() => handleAddTechnoloy(index)}
+                                        title="Add technology"
+                                    >
+                                        <FaPlus className={styles.iconAddItem} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        {/* Add skill to list */}
+                        <div className={styles.boxAddItem}>
+                            <div
+                                className={styles.boxItem}
+                                onClick={() => handleAddSkill()}
+                                title="Add skill"
+                            >
+                                <FaPlus className={styles.iconAddItem} />
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                {/* Save */}
                 <div className={styles.footer}>
                     <button
                         type="button"

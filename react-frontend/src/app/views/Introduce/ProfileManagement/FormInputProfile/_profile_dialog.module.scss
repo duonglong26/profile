@@ -11,7 +11,7 @@
 
     .dialog {
         width: 120rem;
-        height:$height-dialog;
+        height: $height-dialog;
         background-color: rgb(255, 255, 255);
         position: relative;
         top: -10%;
@@ -56,6 +56,8 @@
             justify-content: space-around;
             overflow-x: hidden; /* Hide horizontal scrollbar */
             overflow-y: scroll; /* Add vertical scrollbar */
+            // align-items: center;
+            // justify-content: center;
 
             &::-webkit-scrollbar {
                 width: 0.2rem;
@@ -63,17 +65,96 @@
 
             &Box {
                 width: 100%;
-                // display: grid;
-                // grid-template-columns: auto auto auto;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-evenly;
                 border-radius: 1rem;
                 border: 1px solid $blue-dark-color;
                 position: relative;
+                margin: 1rem;
 
                 .form {
                     margin: 2rem;
+                }
+
+                .item {
+                    margin: 2rem 0 1rem;
+                    border-radius: 2rem;
+                    background-color: #f8f9fa;
+
+                    .boxDeleteIcon {
+                        display: inline-block;
+                        color: $red-light-color;
+                        font-size: 2rem;
+                        padding-bottom: 1rem;
+                        cursor: pointer;
+
+                        &:active {
+                            font-size: 1.7rem;
+                        }
+
+                        &:hover .iconTrashCan {
+                            color: $red-dark-color;
+                        }
+                    }
+                }
+
+                .boxAddItem {
+                    width: calc($width-form-input + 4rem);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 2rem 1rem;
+                    box-sizing: border-box;
+
+                    .boxItem {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2rem;
+                        padding: 1rem;
+                        box-sizing: border-box;
+                        border: 1px solid #ced4da;
+                        cursor: pointer;
+                        border-radius: 3rem;
+
+                        &:active {
+                            color: $white-color;
+                            background-color: rgb(85, 212, 85);
+                        }
+                    }
+                }
+
+                .listIcon {
+                    width: 20%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    padding: 1.2rem;
+                    .boxItem {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2rem;
+                        padding: 1rem;
+                        box-sizing: border-box;
+                        border: 1px solid #ced4da;
+                        cursor: pointer;
+                        border-radius: 3rem;
+
+                        &:active {
+                            color: $white-color;
+                            background-color: rgb(85, 212, 85);
+                        }
+
+                        .iconPlus {
+
+                        }
+
+                        .iconMinus {
+
+                        }
+                    }
                 }
             }
         }

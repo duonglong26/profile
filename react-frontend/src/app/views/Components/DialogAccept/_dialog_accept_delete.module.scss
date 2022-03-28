@@ -10,8 +10,8 @@
     align-items: center;
 
     .dialog {
-        width: 500px;
-        height: 250px;
+        width: 40rem;
+        height: 20rem;
         background-color: rgb(255, 255, 255);
         position: relative;
         top: -10%;
@@ -20,6 +20,15 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: column;
+        border-radius: 2rem;
+
+        h1 {
+            color: rgb(172, 77, 77);
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
         .box {
             width: 50px;
