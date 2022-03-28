@@ -5,7 +5,10 @@ import com.nduonglong02.mycv.domain.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -32,6 +35,13 @@ public class ProfileDto extends BaseObjectDto {
 
             if (isGetChild) {
                 this.personalInformation = new PersonalInformationDto(entity.getPersonalInformation());
+                this.introduce = new IntroduceDto(entity.getIntroduce());
+                if (!CollectionUtils.isEmpty(entity.getEducationList())) {
+                    this.educationList = new ArrayList<>();
+                    for (Education edu : entity.getEducationList()) {
+                        educationList.add(new EducationDto(edu));
+                    }
+                }
             }
         }
     }

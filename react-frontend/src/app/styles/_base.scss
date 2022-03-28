@@ -13,10 +13,10 @@ html {
 // }
 
 .btn {
-    height: 45px;
-    line-height: 45px;
-    padding: 0 30px;
-    font-size: 12px;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    padding: 0 3rem;
+    font-size: 1.2rem;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 2.5px;
@@ -37,52 +37,55 @@ html {
     box-shadow: -0.5px 8px 25px rgb(102, 172, 194);
 }
 
-.boxIcon {
-    width: 50px;
-    height: 50px;
-    background: rgb(255, 255, 255);
-    position: absolute;
+// .boxIcon {
+//     width: 5rem;
+//     height: 5rem;
+//     background: rgb(255, 255, 255);
+//     position: absolute;
+//     z-index: 100;
+//     right: 5rem;
+//     border-radius: 3rem;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     cursor: pointer;
+
+//     &:hover {
+//         background: rgb(149, 163, 150);
+//         transition: all 0.3s ease;
+//     }
+
+//     &:active {
+//         color: white;
+//         background: rgb(72, 102, 80);
+//         transition: all 0.3s ease;
+//     }
+
+//     .iconPen {
+//         font-size: 2.4rem;
+//     }
+// }
+
+.boxIconTrash {
+    width: 5rem;
+    height: 5rem;
     z-index: 100;
-    right: 50px;
-    border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
-    &:hover {
-        background: rgb(149, 163, 150);
-        transition: all 0.3s ease;
-    }
-
-    &:active {
-        color: white;
-        background: rgb(72, 102, 80);
-        transition: all 0.3s ease;
-    }
-
-    .iconPen {
-        font-size: 2.4rem;
-    }
-}
-
-.boxIconTrash {
-    width: 50px;
-    height: 50px;
-    z-index: 100;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    cursor: pointer;
     font-size: 2.5rem;
     position: absolute;
-    right: 0px;
-    top: 15px;
+    right: 0;
+    top: 1.5rem;
     display: none;
 
     .icon {
         color: rgb(150, 47, 47);
         position: relative;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
     }
 
     &:hover {

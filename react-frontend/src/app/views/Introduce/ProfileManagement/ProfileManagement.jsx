@@ -2,15 +2,23 @@ import React, { memo, useEffect, useState, createContext } from 'react';
 import { Link } from "react-router-dom";
 import clsx from 'clsx';
 import styles from './_profile_management.module.scss';
-import { FaFacebook, FaTwitter, FaInstagram, FaTrashAlt } from "react-icons/fa";
+import {
+    FaFacebook,
+    FaTwitter,
+    FaInstagram,
+    FaTrashAlt,
+    FaUser,
+    FaPlus,
+    FaPencilAlt
+} from "react-icons/fa";
 import { GoMarkGithub } from "react-icons/go";
 import { ROOT_PATH } from "../../../../Const";
-import { FaUser, FaPlus } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAllProfile, deleteProfileById } from './ProfileService';
 import ProfileDialog from './FormInputProfile/ProfileDialog';
-import DialogAcceptDelete from '../../Components/DialogAccept/DialogAcceptDelete'
+import DialogAcceptDelete from '../../Components/DialogAccept/DialogAcceptDelete';
+
 
 toast.configure({
     autoClose: 3000,
@@ -29,6 +37,7 @@ function ProfileManagement() {
     const [isOpenFormAcceptDelete, setIsOpenFormAcceptDelete] = useState(false);
     const [currentIdDelete, setCurrentIdDelete] = useState("");
     const [isLogin, setIslogin] = useState(false);
+    const [currentProfileEdit, setCurrentProfileEdit] = useState({});
     useEffect(() => {
         handleLoadPageData();
     }, [])
@@ -38,11 +47,12 @@ function ProfileManagement() {
             setIslogin(true);
         }
     }, [])
+
     const handleLoadPageData = () => {
         getAllProfile().then((res) => {
             if (res?.data) {
+                console.log(res.data);
                 setListProfile(res.data);
-                // toast.success("Loaded data");
                 return;
             }
             throw Error(res.status);
@@ -100,14 +110,20 @@ function ProfileManagement() {
         }
     }
 
+    const handleEditProfile = (obj) => {
+        handleOpenFormInput();
+        setCurrentProfileEdit(obj)
+    }
+
     const providerValue = {
         setIsOpenFormInputProfile,
         setIsOpenFormAcceptDelete,
         handleDeteleItem,
         currentIdDelete,
         setCurrentIdDelete,
-        handleLoadPageData
-    };
+        handleLoadPageData,
+        currentProfileEdit
+    }
 
     return (
         <>
@@ -138,6 +154,25 @@ function ProfileManagement() {
                                     >
                                         <FaTrashAlt
                                             className={styles.icon}
+                                        />
+                                    </div>
+                                }
+                                {/* icon edit */}
+                                {isLogin &&
+                                    <div
+                                        className={styles.boxIconTrash}
+                                        style={{
+                                            color: "#5766ae",
+                                            right: "5rem"
+                                        }}
+                                        onClick={() => handleEditProfile(member)}
+                                    >
+                                        <FaPencilAlt
+                                            className={styles.icon}
+                                            style={{
+                                                color: "#5766ae",
+                                                boxShadow: "none",
+                                            }}
                                         />
                                     </div>
                                 }

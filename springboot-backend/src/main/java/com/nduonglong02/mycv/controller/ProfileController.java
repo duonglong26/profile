@@ -22,11 +22,11 @@ public class ProfileController {
         return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping()
-    public ResponseEntity<ProfileDto> updateProfile(@RequestBody ProfileDto dto) {
-        ProfileDto result = profileService.saveOrUpdate(dto);
-        return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
-    }
+//    @PutMapping()
+//    public ResponseEntity<ProfileDto> updateProfile(@RequestBody ProfileDto dto) {
+//        ProfileDto result = profileService.saveOrUpdate(dto);
+//        return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+//    }
 
     @GetMapping("/all")
     public ResponseEntity<List<ProfileDto>> getAll() {

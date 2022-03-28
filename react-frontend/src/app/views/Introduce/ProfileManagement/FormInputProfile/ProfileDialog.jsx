@@ -33,6 +33,7 @@ const options = [
 ];
 function ProfileDialog() {
     const providerValue = useContext(ThemeContext);
+    const [id, setId] = useState(null);
     // PersonalInformation
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -72,6 +73,40 @@ function ProfileDialog() {
     }])
     const [change, setChange] = useState(false);
 
+    useEffect(() => {
+        console.log(providerValue.currentProfileEdit);
+
+        if (providerValue.currentProfileEdit) {
+            const obj = providerValue.currentProfileEdit;
+            if (obj?.id)
+                setId(obj.id)
+            // Personal Infor
+            setFirstName(obj?.personalInformation?.firstName ? obj?.personalInformation?.firstName : '');
+            setLastName(obj?.personalInformation?.lastName ? obj?.personalInformation?.lastName : '');
+            setJob(obj?.personalInformation?.job ? obj?.personalInformation?.job : '');
+            setDateOfBirth(obj?.personalInformation?.dateOfBirth ? obj?.personalInformation?.dateOfBirth : '');
+            setAddress(obj?.personalInformation?.address ? obj?.personalInformation?.address : '');
+            setLinkFacebook(obj?.personalInformation?.linkFacebook ? obj?.personalInformation?.linkFacebook : '');
+            setLinkInstagram(obj?.personalInformation?.linkInstagram ? obj?.personalInformation?.linkInstagram : '');
+            setLinkTwitter(obj?.personalInformation?.linkTwitter ? obj?.personalInformation?.linkTwitter : '');
+            setLinkGithub(obj?.personalInformation?.linkGithub ? obj?.personalInformation?.linkGithub : '');
+            setEmail(obj?.personalInformation?.email ? obj?.personalInformation?.email : '');
+            setPhone(obj?.personalInformation?.phone ? obj?.personalInformation?.phone : '');
+            // Introduce
+            setSentenceWelcome(obj?.introduce?.sentenceWelcome ? obj?.introduce?.sentenceWelcome : '');
+            setIntroductionUser(obj?.introduce?.introductionUser ? obj?.introduce?.introductionUser : '');
+            setTitleAboutMe(obj?.introduce?.titleAboutMe ? obj?.introduce?.titleAboutMe : '');
+            setTask(obj?.introduce?.task ? obj?.introduce?.task : '');
+            setDescriptionTask(obj?.introduce?.descriptionTask ? obj?.introduce?.descriptionTask : '');
+            // 
+            if (obj?.educationList)
+                setListSchool(obj.educationList);
+            if (obj?.skillList)
+                setSkillList(obj.skillList);
+            if (obj?.projectList)
+                setProjectList(obj.projectList);
+        }
+    }, [])
 
     const handleClose = () => {
         providerValue.setIsOpenFormInputProfile(false)
@@ -262,6 +297,7 @@ function ProfileDialog() {
 
     const handleSubmit = () => {
         const obj = {
+            id: id,
             personalInformation: {
                 firstName: firstName,
                 lastName: lastName,
@@ -339,7 +375,7 @@ function ProfileDialog() {
         newListProject.splice(index, 1); //delete 1 element from 'index'
         return setProjectList([...newListProject]);
     }
-    
+
     return (
         <div className={styles.container}>
             <div className={styles.dialog}>

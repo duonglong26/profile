@@ -1,8 +1,6 @@
 import React, { memo, useState, useEffect, createContext } from "react";
 import styles from './_home.module.scss';
 import { Link } from "react-router-dom";
-import HomeDialog from './HomeDialog';
-import { FaPencilAlt } from "react-icons/fa";
 
 export const ThemeContext = createContext();
 
@@ -50,19 +48,11 @@ function Home() {
                         className={styles.boxIcon}
                         onClick={() => setIsOpenHomeDialog(!isOpenHomeDialog)}
                     >
-                <FaPencilAlt
-                    className={styles.iconPen}
-
-                />
             </div>
                 }
         </div>
 
             {/* Open form dialog */ }
-    {
-        isOpenHomeDialog &&
-        <HomeDialog />
-    }
         </ThemeContext.Provider >
     );
 }

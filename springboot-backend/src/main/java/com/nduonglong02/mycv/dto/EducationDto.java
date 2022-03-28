@@ -23,6 +23,7 @@ public class EducationDto extends BaseObjectDto {
         this.modifiedBy = entity.getModifiedBy();
         this.schoolName = entity.getSchoolName();
         this.course = entity.getCourse();
+        this.major = entity.getMajor();
         this.profile = new ProfileDto(entity.getProfile(), false);
     }
 }
