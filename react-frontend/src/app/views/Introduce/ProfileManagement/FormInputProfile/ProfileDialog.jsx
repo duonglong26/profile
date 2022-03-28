@@ -65,6 +65,11 @@ function ProfileDialog() {
             details: ''
         }]
     }]);
+    const [projectList, setProjectList] = useState([{
+        name: '',
+        participationProcess: '',
+        description: ''
+    }])
     const [change, setChange] = useState(false);
 
 
@@ -128,64 +133,61 @@ function ProfileDialog() {
     }
 
     const handleChangeSchoolData = (value, source, index) => {
-        setListSchool(prev => {
-            switch (source) {
-                case "schoolName":
-                    prev[index].schoolName = value;
-                    break;
-                case "course":
-                    prev[index].course = value;
-                    break;
-                case "major":
-                    prev[index].major = value;
-                    break;
-                default:
-                    break;
-            }
-            return prev;
-        });
+        switch (source) {
+            case "schoolName":
+                listSchool[index].schoolName = value;
+                break;
+            case "course":
+                listSchool[index].course = value;
+                break;
+            case "major":
+                listSchool[index].major = value;
+                break;
+            default:
+                break;
+        }
         setChange(!change);
     }
 
     const validateProfile = () => {
         console.log("Validating..");
-        // if (firstName === '') {
-        //     toast.warning("Let's fill first name");
-        //     return false;
-        // } else if (lastName === '') {
-        //     toast.warning("Let's fill last name");
-        //     return false;
-        // } else if (job === '') {
-        //     toast.warning("Let's fill job");
-        //     return false;
-        // } else if (dateOfBirth === null) {
-        //     toast.warning("Let's fill date of birth");
-        //     return false;
-        // } else if (address === '') {
-        //     toast.warning("Let's fill address");
-        //     return false;
-        // } else if (email === '') {
-        //     toast.warning("Let's fill email");
-        //     return false;
-        // } else if (phone === '') {
-        //     toast.warning("Let's fill phone");
-        //     return false;
-        // } else if (sentenceWelcome === '') {
-        //     toast.warning("Let's fill sentence welcome");
-        //     return false;
-        // } else if (introductionUser === '') {
-        //     toast.warning("Let's fill introduction of user");
-        //     return false;
-        // } else if (titleAboutMe === '') {
-        //     toast.warning("Let's fill title of 'About Me'");
-        //     return false;
-        // } else if (task === '') {
-        //     toast.warning("Let's fill task");
-        //     return false;
-        // } else if (descriptionTask === '') {
-        //     toast.warning("Let's fill description task");
-        //     return false;
-        // }
+        if (firstName === '') {
+            toast.warning("Let's fill first name");
+            return false;
+        } else if (lastName === '') {
+            toast.warning("Let's fill last name");
+            return false;
+        } else if (job === '') {
+            toast.warning("Let's fill job");
+            return false;
+        } else if (dateOfBirth === null) {
+            toast.warning("Let's fill date of birth");
+            return false;
+        } else if (address === '') {
+            toast.warning("Let's fill address");
+            return false;
+        } else if (email === '') {
+            toast.warning("Let's fill email");
+            return false;
+        } else if (phone === '') {
+            toast.warning("Let's fill phone");
+            return false;
+        } else if (sentenceWelcome === '') {
+            toast.warning("Let's fill sentence welcome");
+            return false;
+        } else if (introductionUser === '') {
+            toast.warning("Let's fill introduction of user");
+            return false;
+        } else if (titleAboutMe === '') {
+            toast.warning("Let's fill title of 'About Me'");
+            return false;
+        } else if (task === '') {
+            toast.warning("Let's fill task");
+            return false;
+        } else if (descriptionTask === '') {
+            toast.warning("Let's fill description task");
+            return false;
+        }
         return true;
     }
 
@@ -307,6 +309,37 @@ function ProfileDialog() {
         toast.warning("At least a technology")
     }
 
+    const handleChangeProject = (value, source, index) => {
+        switch (source) {
+            case "name":
+                projectList[index].name = value;
+                break;
+            case "participationProcess":
+                projectList[index].participationProcess = value;
+                break;
+            case "description":
+                projectList[index].description = value;
+                break;
+            default:
+                break;
+        }
+        setChange(!change);
+    }
+
+    const handleAddProject = () => {
+        setProjectList([...projectList, {
+            name: '',
+            participationProcess: '',
+            description: ''
+        }])
+    }
+
+    const handleDeleteProject = (index) => {
+        let newListProject = projectList;
+        newListProject.splice(index, 1); //delete 1 element from 'index'
+        return setProjectList([...newListProject]);
+    }
+    
     return (
         <div className={styles.container}>
             <div className={styles.dialog}>
@@ -657,7 +690,7 @@ function ProfileDialog() {
                                         value={skill?.name ? skill.name : ''}
                                         onChange={(input) => handleChangeSkill(input.target.value, "skillName", index)}
                                     />
-                                    <label className={styles.formLabel}>Skill Name</label>
+                                    <label className={styles.formLabel}>{index + 1}. Skill Name</label>
                                 </div>
 
                                 {/* List icon service */}
@@ -757,6 +790,73 @@ function ProfileDialog() {
                                 className={styles.boxItem}
                                 onClick={() => handleAddSkill()}
                                 title="Add skill"
+                            >
+                                <FaPlus className={styles.iconAddItem} />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Project */}
+                    <div className={styles.contentBox}>
+                        {/* Title Form */}
+                        <label className={styles.formLabelBig}>Project</label>
+                        {projectList.map((project, index) => (
+                            <div className={styles.item} key={index}>
+                                <h1>{index + 1}</h1>
+                                {/* Project Name */}
+                                <div className={styles.form}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={project?.name ? project?.name : ''}
+                                        onChange={(input) => handleChangeProject(input.target.value, "name", index)}
+                                    />
+                                    <label className={styles.formLabel}>Project Name</label>
+                                </div>
+                                {/* Participation Process */}
+                                <div className={styles.form}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={project?.participationProcess ? project?.participationProcess : ''}
+                                        onChange={(input) => handleChangeProject(input.target.value, "participationProcess", index)}
+                                    />
+                                    <label className={styles.formLabel}>Participation Process</label>
+                                </div>
+                                {/* Description */}
+                                <div className={styles.form}>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        autoComplete="off"
+                                        placeholder=" "
+                                        value={project?.description ? project?.description : ''}
+                                        onChange={(input) => handleChangeProject(input.target.value, "description", index)}
+                                    />
+                                    <label className={styles.formLabel}>Description</label>
+                                </div>
+                                {/* Delete from list project */}
+                                <div
+                                    className={styles.boxDeleteIcon}
+                                    title="Delete"
+                                    onClick={() => handleDeleteProject(index)}
+                                >
+                                    <FaMinusCircle
+                                        className={styles.iconTrashCan}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+
+                        {/* Add project to list */}
+                        <div className={styles.boxAddItem}>
+                            <div
+                                className={styles.boxItem}
+                                onClick={() => handleAddProject()}
                             >
                                 <FaPlus className={styles.iconAddItem} />
                             </div>
