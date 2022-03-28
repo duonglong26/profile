@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import * as Fa from "react-icons/fa";
 import { DiMysql, DiMsqlServer } from "react-icons/di";
 import { SiSpringboot } from "react-icons/si";
+import { GiTortoise } from "react-icons/gi";
 
 const skills = [
   {
@@ -163,6 +164,9 @@ function Skills() {
         break;
       case 'DiMsqlServer':
         result = <DiMsqlServer className={styles.symbol} />;
+        break;
+      case 'GiTortoise':
+        result = <GiTortoise className={styles.symbol} />;
         break;
       default:
         result = <></>;

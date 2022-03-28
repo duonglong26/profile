@@ -3,26 +3,28 @@
 .aboutMe {
     z-index: 1;
     width: 100%;
-    height: 620px;
+    height: 62rem;
     background-color: rgb(255, 255, 255);
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     box-sizing: border-box;
 
-    .info{
-        width: 1140px;
+    .info {
+        width: 114rem;
         height: 90%;
         display: flex;
         /* background-color: rgb(163, 163, 163); */
         justify-content: space-around;
+        align-items: center;
+
         .content {
-            width: 540px;
+            width: 54rem;
             height: 100%;
-            padding: 15px;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;   
+            justify-content: center;
             .name {
                 font-size: 2.4rem;
                 // color: #111111;
@@ -39,10 +41,10 @@
         }
 
         .image {
-            background-color: rgba(230, 230, 230, 0.3);
-            width: 570px;
+            background-color: rgba(230, 230, 230, 0.1);
+            width: 57rem;
             height: 100%;
-            padding: 15px;
+            padding: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;

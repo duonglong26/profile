@@ -97,6 +97,19 @@
                             color: $red-dark-color;
                         }
                     }
+
+                    .selectIcon {
+                        width: $width-form-input;
+                        height: 4rem;
+                        font-size: 1.5rem;
+                        color: $blue-light-color;
+                        background-color: transparent;
+                        border: none;
+                        margin: 1.8rem 0.7rem 0.4rem;
+                        box-sizing: border-box;
+                        border-bottom: 1px solid $blue-light-color;
+                        outline: none;
+                    }
                 }
 
                 .boxAddItem {
@@ -148,11 +161,9 @@
                         }
 
                         .iconPlus {
-
                         }
 
                         .iconMinus {
-
                         }
                     }
                 }

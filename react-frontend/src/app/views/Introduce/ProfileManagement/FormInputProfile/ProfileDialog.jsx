@@ -15,6 +15,22 @@ toast.configure({
         fontSize: '1.5rem'
     }
 });
+const options = [
+    { code: "", name: "<Choose Icon Name>" },
+    { code: "FaJava", name: "Java" },
+    { code: "SiSpringboot", name: "Spring Boot" },
+    { code: "FaHtml5", name: "HTML 5" },
+    { code: "FaDatabase", name: "Database Access" },
+    { code: "FaCss3", name: "CSS" },
+    { code: "FaSass", name: "SASS" },
+    { code: "FaJs", name: "JavaScript" },
+    { code: "FaReact", name: "ReactJs" },
+    { code: "FaGitAlt", name: "Git" },
+    { code: "FaGithub", name: "Github" },
+    { code: "DiMysql", name: "Mysql" },
+    { code: "DiMsqlServer", name: "SQL Server" },
+    { code: "GiTortoise", name: "Tortoise SVN" },
+];
 function ProfileDialog() {
     const providerValue = useContext(ThemeContext);
     // PersonalInformation
@@ -131,7 +147,6 @@ function ProfileDialog() {
         setChange(!change);
     }
 
-
     const validateProfile = () => {
         console.log("Validating..");
         // if (firstName === '') {
@@ -212,6 +227,8 @@ function ProfileDialog() {
     }
 
     const handleChangeSkill = (value, source, indexSkill, indexTech) => {
+        console.log("===========")
+        console.log(value)
         switch (source) {
             case 'skillName':
                 skillList[indexSkill].name = value;
@@ -220,7 +237,9 @@ function ProfileDialog() {
                 skillList[indexSkill].technologyList[indexTech].name = value;
                 break;
             case 'iconName':
-                skillList[indexSkill].technologyList[indexTech].iconName = value;
+                if (value) {
+                    skillList[indexSkill].technologyList[indexTech].iconName = value;
+                }
                 break;
             case 'details':
                 skillList[indexSkill].technologyList[indexTech].details = value;
@@ -657,6 +676,7 @@ function ProfileDialog() {
 
                                 {skill?.technologyList.map((technology, indexTech) => (
                                     <div className={styles.item} key={indexTech}>
+                                        {/* Technology Name*/}
                                         <div className={styles.form}>
                                             <input
                                                 type="text"
@@ -670,18 +690,24 @@ function ProfileDialog() {
                                             <label className={styles.formLabel}>Technology</label>
                                         </div>
 
-                                        <div className={styles.form}>
-                                            <input
-                                                type="text"
-                                                className={styles.formInput}
-                                                autoComplete="off"
-                                                placeholder=" "
-                                                value={technology?.iconName ? technology?.iconName : ''}
-                                                onChange={(input) => handleChangeSkill(input.target.value, "iconName", index, indexTech)}
-                                            />
-                                            <label className={styles.formLabel}>Icon</label>
-                                        </div>
+                                        {/* Icon Name */}
+                                        <form>
+                                            <select
+                                                className={styles.selectIcon}
+                                                onChange={(e) => handleChangeSkill(e.target.value, "iconName", index, indexTech)}
+                                            >
+                                                {options.map(opt => (
+                                                    <option
+                                                        key={opt.code}
+                                                        value={opt.code}
+                                                    >
+                                                        {opt?.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </form>
 
+                                        {/* Details */}
                                         <div className={styles.form}>
                                             <input
                                                 type="text"

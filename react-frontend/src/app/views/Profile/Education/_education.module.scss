@@ -3,13 +3,13 @@
 .educations {
     width: 100%;
     background-color: $background-color;
-    padding-bottom: 100px;
+    padding-bottom: 10rem;
 
     .title {
         text-align: center;
         font-size: 3.9rem;
         font-weight: 700;
-        line-height: 50px;
+        line-height: 5rem;
         @include linerText(45deg, rgb(255, 1, 1), rgb(0, 44, 238));
     }
 
@@ -17,30 +17,30 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        // padding: 0 100px;
+        // padding: 0 10rem;
 
         .school {
             background-color: rgba(161, 161, 161, 0.1);
-            width: 500px;
+            width: 50rem;
             // width: 25%;
-            margin: 15px;
+            margin: 1.5rem;
             border-radius: 20px;
 
             .name {
                 padding: 0px 40px;
-                font-size: 19px;
+                font-size: 1.9rem;
                 font-weight: 700;
             }
 
             .specialized {
                 padding: 0px 40px 10px;
-                font-size: 15px;
+                font-size: 1.5rem;
                 font-weight: 600;
             }
 
             .course {
                 padding: 0px 40px;
-                font-size: 15px;
+                font-size: 1.5rem;
                 font-weight: 400;
             }
             span {

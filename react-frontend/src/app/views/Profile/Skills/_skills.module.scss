@@ -11,8 +11,8 @@
         text-align: center;
         font-size: 3.9rem;
         font-weight: 700;
-        line-height: 50px;
-        @include linerText(45deg, rgb(40, 83, 104), rgb(224, 18, 46));
+        line-height: 5rem;
+        @include linerText(45deg, rgb(104, 40, 51), rgb(167, 25, 44));
     }
 
     .categories {
@@ -24,9 +24,9 @@
 
         .item {
             box-shadow: 0px 1px 15px -3px rgb(112, 145, 161);
-            padding: 10px;
-            margin: 10px;
-            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 2rem;
             cursor: pointer;
             text-transform: uppercase;
 
@@ -55,13 +55,13 @@
         will-change: opacity, transform;
 
         .item {
-            width: 350px;
-            height: 359px;
-            margin: 20px;
+            width: 35rem;
+            height: 35,9rem;
+            margin: 2rem;
             box-shadow: 0px 1px 15px -3px #7091a1;
             box-sizing: border-box;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 1rem;
+            border-radius: 0.5rem;
 
             .boxSymbol {
                 width: 100%;
@@ -73,8 +73,6 @@
                 .symbol {
                     width: inherit;
                     height: inherit;
-                    // @include linerText(45deg, red, blue)
-
                     color: rgb(50, 62, 77);
                 }
             }

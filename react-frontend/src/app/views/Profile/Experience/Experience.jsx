@@ -7,9 +7,9 @@ function Experience() {
             <p className={styles.title}>Experience</p>
             <div className={styles.products}>
                 <div className={styles.product}>
-                    <div className={styles.image}>
+                    {/* <div className={styles.image}>
                         <img></img>
-                    </div>
+                    </div> */}
                     <div className={styles.name}>
                         EQA EPT
                     </div>
