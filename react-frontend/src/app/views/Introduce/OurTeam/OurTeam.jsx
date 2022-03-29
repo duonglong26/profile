@@ -33,7 +33,7 @@ const listMembers = [
         name: "Tuấn Hiển",
         img: '#',
         job: "Grab",
-        linkFb: null,
+        linkFb: 'https://www.facebook.com/giangtuan.hien',
         linkTwitter: null,
         linkInstagram: null,
         linkGithub: null

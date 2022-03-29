@@ -89,12 +89,14 @@
                     font-size: 19px;
                     .icon {
 
-                        background: $black-color;
-                        color: $white-color;
-                        padding: 10px;
-                        margin: 9px;
-                        border-radius: 20px;
-                        cursor: pointer;
+                        .job {
+                            margin: 10px 0;
+                            width: 100%;
+                            line-height: 25px;
+                            text-align: center;
+                            box-sizing: border-box;
+                            font-size: 16px;
+                        }
                     }
                     a {
                         color: $text-color;
@@ -105,7 +107,7 @@
     }
 }
 
-// Thiết bị màn hình nhỏ hơn 1440px
+// Thiết bị màn hình nhỏ hơn 1200px
 @media only screen and (max-width: 1199px) {
 }
 
