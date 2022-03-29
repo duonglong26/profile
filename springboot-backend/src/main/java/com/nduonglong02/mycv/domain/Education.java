@@ -22,7 +22,8 @@ public class Education extends BaseObject {
     @Column(name = "major")
     private String major;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    //    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private Profile profile;
 }
