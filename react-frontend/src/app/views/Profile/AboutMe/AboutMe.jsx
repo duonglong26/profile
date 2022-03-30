@@ -6,7 +6,7 @@ function AboutMe() {
     return (
         <>
             {/* Thông tin cá nhân, nghề nghiệp */}
-            <div className={styles.aboutMe}>
+            <div className={styles.aboutMe} id='about-me'>
                 <div className={styles.info}>
                     <div className={styles.content}>
                         <h2 className={styles.name}>
@@ -35,11 +35,11 @@ function AboutMe() {
             </div>
 
             {/* Số liệu, số lượng khách hàng, dự án */}
-            <div className={styles.couterRow}>
+            {/* <div className={styles.couterRow}>
                 <div className={styles.counterBox}>
 
                 </div>
-            </div>
+            </div> */}
         </>
     );
 }

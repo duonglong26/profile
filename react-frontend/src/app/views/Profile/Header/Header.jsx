@@ -6,74 +6,68 @@ import { ROOT_PATH } from "../../../../Const";
 function Header() {
 
     return (
-        <>
-            <header className={styles.header} id="header">
-                <nav className={styles.nav}>
-                    <div className={styles.title}>
-                        <Link
+        <header className={styles.header} >
+            <nav className={styles.nav}>
+                <div className={styles.title}>
+                    <Link
+                        className={styles.link}
+                        to={ROOT_PATH + "/"}
+                    >
+                        My profile
+                    </Link>
+                </div>
+                <ul className={styles.listItem}>
+                    <li className={styles.item}>
+                        <a
+                            href="#home"
                             className={styles.link}
-                            to={ROOT_PATH + "/"}
                         >
-                            My profile
-                        </Link>
-                    </div>
-                    <ul className={styles.listItem}>
-                        <li className={styles.item}>
-                            <Link
-                                className={styles.link}
-                                to="#"
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li className={styles.item}>
-                            <Link
-                                className={styles.link}
-                                to="#"
-                            >
-                                About me
-                            </Link>
-                        </li>
-                        <li className={styles.item}>
-                            <Link
-                                className={styles.link}
-                                to="#"
-                            >
-                                Education
-                            </Link>
-                        </li>
-                        <li className={styles.item}>
-                            <Link
-                                className={styles.link}
-                                to="#"
-                            >
-                                Skills
-                            </Link>
-                        </li>
-                        <li className={styles.item}>
-                            <Link
-                                className={styles.link}
-                                to="#"
-                            >
-                                Experience
-                            </Link>
-                        </li>
-                        <li className={styles.item}>
-                            <Link
-                                className={styles.link}
-                                to="#"
-                            >
-                                Contact
-                            </Link>
-                        </li>
-                        <li className={styles.item}>
-                            {/* <i className="fa-solid fa-bars-sort"></i>
-                            <i className="fa-solid fa-bars-sort"></i> */}
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-        </>
+                            Home
+                        </a>
+                    </li>
+                    <li className={styles.item}>
+                        <a
+                            href="#about-me"
+                            className={styles.link}
+                        >
+                            About me
+                        </a>
+                    </li>
+                    <li className={styles.item}>
+                        <a
+                            href="#education"
+                            className={styles.link}
+                        >
+                            Education
+                        </a>
+                    </li>
+                    <li className={styles.item}>
+                        <a
+                            href="#skills"
+                            className={styles.link}
+                        >
+                            Skills
+                        </a>
+                    </li>
+                    <li className={styles.item}>
+                        <a
+                            href="#experience"
+                            className={styles.link}
+                        >
+                            Experience
+                        </a>
+                    </li>
+                    <li className={styles.item}>
+                        <a
+                            href="#contact"
+                            className={styles.link}
+                        >
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     );
 }
 

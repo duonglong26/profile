@@ -1,30 +1,27 @@
 @import "../../../styles/root";
 
 .home {
-    position: relative;
-    top: $height-header;
-    // font-family: 'Sunflower', sans-serif;
+    // position: relative;
+    // top: $height-header;
     width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    // background-color: rgba(0, 0, 0, 0.5);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 
     .content {
-        width: 600px;
-        height: 600px;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        padding: 10px 15px;
+        padding: 1rem 1.5rem;
         align-items: center;
         justify-content: center;
-        background-color: rgba(255, 255, 255, 0.83);
+        background-color: rgba(0, 0, 0, 0.2);
         border-radius: 10px;
         position: relative;
-        top: -50px;
-        border-radius: 500px;
+        top: -5rem;
+        color: white;
 
         .welcome {
             display: block;
@@ -33,7 +30,6 @@
             text-align: center;
             line-height: 5rem;
             font-weight: 300;
-            @include linerText(45deg, #06619c, #da0214);
         }
 
         .userName {
@@ -48,20 +44,67 @@
 
         .introductionUser {
             display: block;
-            padding: 0 75px;
+            padding: 0 7.5rem;
             font-size: 1.6rem;
             margin: 0 0 10px;
             text-align: center;
             line-height: 1.8rem;
-            @include linerText(45deg, #e70202, #011e33);
         }
 
         .box {
             display: flex;
             justify-content: center;
-            padding-top: 50px;
-            width: 200px;
+            padding-top: 5rem;
+            width: 20rem;
             margin: 8px;
+        }
+    }
+}
+
+.homeDialog {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+
+    .contentBox {
+        width: 800px;
+        min-height: 400px;
+        background-color: $white-color;
+
+        .rowBoxClose {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .rowContent {
+            width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+
+            h3 {
+                width: 200px;
+                font-size: 1.6rem;
+            }
+
+            input {
+                width: 300px;
+                background-color: $transparent-color;
+                // border: none;
+                border: 1px solid $black-color;
+                outline: none;
+                font-size: 1.5rem;
+                padding: 6px;
+                box-sizing: border-box;
+            }
         }
     }
 }

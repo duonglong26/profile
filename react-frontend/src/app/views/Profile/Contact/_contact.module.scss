@@ -1,0 +1,117 @@
+@import "../../../styles/root";
+
+.contact {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(49, 46, 46);
+
+    .title {
+        text-align: center;
+        font-size: 3.9rem;
+        font-weight: 700;
+        line-height: 5rem;
+        @include linerText(45deg, rgb(141, 61, 65), rgb(146, 33, 122));
+    }
+
+    .block {
+        width: 100rem;
+        min-height: 46.8rem;
+        display: flex;
+        box-shadow: rgb(0 0 0 / 20%) 0px 1px 27px -3px;
+        border-radius: 1rem;
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        .formInformation {
+            width: 50%;
+            box-sizing: border-box;
+            padding: 3.5rem;
+            border-right: 1px solid rgb(223, 215, 215);
+
+            .slogan {
+                line-height: 2rem;
+                font-size: 1.6rem;
+                opacity: 0.8;
+            }
+
+            .content {
+                display: flex;
+                width: 100%;
+                margin: 30px 0;
+
+                .box {
+                    width: 4rem;
+                    height: 4rem;
+                    background-color: rgb(25, 230, 219);
+                    color: $white-color;
+                    font-size: 1.7rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 30px;
+                    .icon {
+                    }
+                }
+
+                p {
+                    font-size: 1.6rem;
+                    line-height: 2rem;
+                    position: relative;
+                    top: -1rem;
+                    box-sizing: border-box;
+                    padding: 0 1.5rem;
+                }
+            }
+        }
+
+        .formFeedBack {
+            width: 50%;
+            box-sizing: border-box;
+            padding: 3.5rem;
+
+            input {
+                width: 100%;
+                min-height: 3.5rem;
+                margin: 1rem 0;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+                opacity: 0.7;
+
+                &:focus {
+                    outline: 0;
+                    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+                }
+            }
+
+            textarea {
+                font-family: "Open Sans", sans-serif;
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+                min-height: 9rem;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                margin: 1rem 0;
+                padding: 1rem 15px;
+                box-sizing: border-box;
+                opacity: 0.7;
+
+                &:focus {
+                    outline: 0;
+                    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+                }
+            }
+
+            .boxSend {
+                margin: 1.5rem;
+            }
+        }
+    }
+}
