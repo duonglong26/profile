@@ -38,6 +38,7 @@ function ProfileManagement() {
     const [currentIdDelete, setCurrentIdDelete] = useState("");
     const [isLogin, setIslogin] = useState(false);
     const [currentProfileEdit, setCurrentProfileEdit] = useState({});
+
     useEffect(() => {
         handleLoadPageData();
     }, [])
@@ -87,6 +88,7 @@ function ProfileManagement() {
     }
 
     const handleOpenFormInput = () => {
+        setCurrentProfileEdit(null)
         setIsOpenFormInputProfile(!isOpenFormInputProfile);
     }
 
@@ -122,7 +124,7 @@ function ProfileManagement() {
         currentIdDelete,
         setCurrentIdDelete,
         handleLoadPageData,
-        currentProfileEdit
+        currentProfileEdit,
     }
 
     return (
