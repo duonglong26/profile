@@ -41,6 +41,7 @@
 
             .item {
                 padding: 0 20px;
+                
                 .link {
                     text-decoration: none;
                     color: black;
@@ -52,6 +53,24 @@
                     text-transform: uppercase;
                 }
             }
+        .iconNav{
+            display: none;
         }
+        }
+
     }
 }
+@media only screen and (max-width: 899px) {
+    .header{
+        .nav{
+            .title{
+                font-size: 2.0rem;
+            }
+           .listItem{
+               display: none;
+           }
+                
+            }
+        }
+}
+
