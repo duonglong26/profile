@@ -32,7 +32,7 @@
         }
 
         .formInformation {
-            width: 50rem;
+            width: 40rem;
             box-sizing: border-box;
             padding: 3.5rem;
 
@@ -73,7 +73,7 @@
         }
 
         .formFeedBack {
-            width: 50rem;
+            width: 40rem;
             box-sizing: border-box;
             padding: 3.5rem;
 
@@ -140,9 +140,17 @@
 //     height: 50px;
 // }
 
-//  // Thiết bị màn hình nhỏ hơn 480px
-//  @media only screen and (max-width: 479px) {
-// }
+ // Thiết bị màn hình nhỏ hơn 480px
+ @media only screen and (max-width: 479px) {
+    .contact {
+        .block {
+            .formInformation {
+            }
+            .formFeedBack {
+            }
+        }
+    }
+}
 
 //  // Thiết bị màn hình nhỏ hơn 320px
 //  @media only screen and (max-width: 319px) {

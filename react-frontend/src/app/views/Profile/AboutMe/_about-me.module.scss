@@ -18,6 +18,7 @@
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
+        margin: 1rem 0 3rem;
 
         .content {
             width: 54rem;
@@ -43,7 +44,7 @@
 
         .image {
             // background-color: rgba(230, 230, 230, 0.1);
-            background-color: rgba(241, 43, 43, 0.1);
+            background-color: rgba(75, 186, 194, 0.1);
             width: 45rem;
             height: 45rem;
             padding: 1.5rem;
@@ -60,15 +61,9 @@
             .info{
                 .content{
                     align-items: center;
-                    .name{
-                        
-                    }
                     .description{
                         margin: 5rem 5rem;
                     }
-                }
-                .image{
-                    
                 }
             }
         }
@@ -81,37 +76,10 @@
             .info{
                 .content{
                     align-items: center;
-                    .name{
-                        
-                    }
                     .description{
                         margin: 5rem 5rem;
                     }
                 }
-                .image{
-                    // display: none;
-                }
             }
         }
     }
-
-    // // Thiết bị màn hình nhỏ hơn 900px
-    // @media only screen and (max-width: 899px) {
-    // }
-
-    // // Thiết bị màn hình nhỏ hơn 768px
-    // @media only screen and (max-width: 767px) {
-    // }
-
-    // // Thiết bị màn hình nhỏ hơn 600px
-    // @media only screen and (max-width: 599px) {
-    //     height: 50px;
-    // }
-
-    //  // Thiết bị màn hình nhỏ hơn 480px
-    //  @media only screen and (max-width: 479px) {
-    // }
-
-    //  // Thiết bị màn hình nhỏ hơn 320px
-    //  @media only screen and (max-width: 319px) {
-    // }
