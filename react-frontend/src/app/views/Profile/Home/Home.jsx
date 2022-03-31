@@ -15,7 +15,6 @@ function Home() {
         }
     })
 
-    console.log(profile)
 
     return (
         <div className={styles.home} id='home'>
