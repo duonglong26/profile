@@ -12,7 +12,7 @@ function AboutMe() {
         }
     })
 
-    console.log(profile)
+   
     return (
         <>
             {/* Thông tin cá nhân, nghề nghiệp */}
