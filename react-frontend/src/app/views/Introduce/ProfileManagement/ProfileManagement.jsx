@@ -181,7 +181,11 @@ function ProfileManagement() {
                                 {/* content */}
                                 <div className={styles.cardImg}>
                                     <Link
-                                        to={ROOT_PATH + "/user"}
+                                        // to={ROOT_PATH + "/user/" + member?.id}
+                                        to={{
+                                            pathname: "/user",
+                                            search: "?key=" + member?.id,
+                                        }}
                                         className={styles.name}
                                     >
                                         <FaUser
@@ -191,7 +195,12 @@ function ProfileManagement() {
                                 </div>
                                 <div className={styles.cardContent}>
                                     <Link
-                                        to={ROOT_PATH + "/user"}
+                                        // to={ROOT_PATH + "/user/" + member?.id},
+                                        // search: "?key=value",
+                                        to={{
+                                            pathname: "/user",
+                                            search: "?key=" + member?.id,
+                                        }}
                                         className={styles.name}
                                     >
                                         {member?.personalInformation?.firstName + " " + member?.personalInformation?.lastName}
