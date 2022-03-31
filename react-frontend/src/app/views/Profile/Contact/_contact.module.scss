@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
     color: rgb(49, 46, 46);
+    
 
     .title {
         text-align: center;
@@ -17,21 +18,23 @@
     }
 
     .block {
-        width: 100rem;
+        // width: 100rem;
         min-height: 46.8rem;
         display: flex;
         box-shadow: rgb(0 0 0 / 20%) 0px 1px 27px -3px;
         border-radius: 1rem;
+        flex-wrap: wrap;
+        // align-items: center;
+        justify-content: center;
 
         h2 {
             font-size: 2.5rem;
         }
 
         .formInformation {
-            width: 50%;
+            width: 50rem;
             box-sizing: border-box;
             padding: 3.5rem;
-            border-right: 1px solid rgb(223, 215, 215);
 
             .slogan {
                 line-height: 2rem;
@@ -70,7 +73,7 @@
         }
 
         .formFeedBack {
-            width: 50%;
+            width: 50rem;
             box-sizing: border-box;
             padding: 3.5rem;
 
@@ -115,3 +118,32 @@
         }
     }
 }
+// Thiết bị màn hình nhỏ hơn 1200px
+@media only screen and (max-width: 1199px) {
+    
+}
+
+// Thiết bị màn hình nhỏ hơn 1024px
+@media only screen and (max-width: 1023px) {
+}
+
+// // Thiết bị màn hình nhỏ hơn 900px
+// @media only screen and (max-width: 899px) {
+// }
+
+// // Thiết bị màn hình nhỏ hơn 768px
+// @media only screen and (max-width: 767px) {
+// }
+
+// // Thiết bị màn hình nhỏ hơn 600px
+// @media only screen and (max-width: 599px) {
+//     height: 50px;
+// }
+
+//  // Thiết bị màn hình nhỏ hơn 480px
+//  @media only screen and (max-width: 479px) {
+// }
+
+//  // Thiết bị màn hình nhỏ hơn 320px
+//  @media only screen and (max-width: 319px) {
+// }

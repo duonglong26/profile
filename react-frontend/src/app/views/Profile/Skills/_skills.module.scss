@@ -21,6 +21,7 @@
         list-style: none;
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
 
         .item {
             box-shadow: 0px 1px 15px -3px rgb(112, 145, 161);
@@ -97,3 +98,37 @@
         }
     }
 }
+// Thiết bị màn hình nhỏ hơn 1200px
+@media only screen and (max-width: 1199px) {
+    
+}
+
+// // Thiết bị màn hình nhỏ hơn 1024px
+@media only screen and (max-width: 1023px) {
+}
+
+// // Thiết bị màn hình nhỏ hơn 900px
+@media only screen and (max-width: 899px) {
+    .skills{
+        .categories{
+         
+        }
+    }
+}
+
+// // Thiết bị màn hình nhỏ hơn 768px
+// @media only screen and (max-width: 767px) {
+// }
+
+// // Thiết bị màn hình nhỏ hơn 600px
+// @media only screen and (max-width: 599px) {
+//     height: 50px;
+// }
+
+//  // Thiết bị màn hình nhỏ hơn 480px
+//  @media only screen and (max-width: 479px) {
+// }
+
+//  // Thiết bị màn hình nhỏ hơn 320px
+//  @media only screen and (max-width: 319px) {
+// }
