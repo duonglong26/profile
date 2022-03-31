@@ -1,59 +1,43 @@
-import React, { memo, useState, useEffect, createContext } from "react";
+import React, { memo, useState, useEffect, useContext } from "react";
 import styles from './_home.module.scss';
 import { Link } from "react-router-dom";
+import { ThemeContext } from '../UserProfile';
 
-export const ThemeContext = createContext();
 
 function Home() {
-    const [isLogin, setIsLogin] = useState(false);
+    const providerValue = useContext(ThemeContext);
     const [isOpenHomeDialog, setIsOpenHomeDialog] = useState(false);
-
-    console.log(localStorage.getItem("access_token"));
+    const [profile, setProfile] = useState(null);
 
     useEffect(() => {
-        if (localStorage.getItem("access_token")) {
-            setIsLogin(!isLogin);
+        if (providerValue?.profile) {
+            setProfile(providerValue.profile);
         }
-    }, [])
+    })
 
-    const providerValue = {
-        isOpenHomeDialog,
-        setIsOpenHomeDialog
-    };
 
     return (
-        <ThemeContext.Provider value={providerValue}>
-            <div className={styles.home} id='home'>
-                <div className={styles.content}>
-                    <span className={styles.welcome}>
-                        Hello, my name is
-                    </span>
-                    <span className={styles.userName}>
-                        Duong Long
-                    </span>
-                    <span className={styles.introductionUser}>
-                        I'm a Java back-end developer. Now, I'm living in Ha Noi city.
-                    </span>
-                    <div className={styles.box}>
-                        <button className={styles.btn}>
-                            Contact us
-                            {/* <i className={styles.}"fa-solid fa-arrow-right"></i> */}
-                        </button>
-                    </div>
+        <div className={styles.home} id='home'>
+            <div className={styles.content}>
+                <span className={styles.welcome}>
+                    Hello, my name is
+                </span>
+                <span className={styles.userName}>
+                    {profile?.personalInformation?.firstName + " "+ profile?.personalInformation?.lastName}
+                </span>
+                <span className={styles.introductionUser}>
+                    {profile?.introduce?.sentenceWelcome}
+                </span>
+                <div className={styles.box}>
+                    <button className={styles.btn}>
+                        Contact us
+                        {/* <i className={styles.}"fa-solid fa-arrow-right"></i> */}
+                    </button>
                 </div>
-
-                {/* Icon open form dialog */}
-                {!isOpenHomeDialog && isLogin &&
-                    <div
-                        className={styles.boxIcon}
-                        onClick={() => setIsOpenHomeDialog(!isOpenHomeDialog)}
-                    >
             </div>
-                }
+
         </div>
 
-            {/* Open form dialog */ }
-        </ThemeContext.Provider >
     );
 }
 

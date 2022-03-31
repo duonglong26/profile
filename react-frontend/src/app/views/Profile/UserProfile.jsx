@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState, createContext } from "react";
 import styles from "./_user-profile.module.scss";
 import Header from './Header/Header';
 import Home from './Home/Home';
@@ -7,23 +7,58 @@ import Education from './Education/Education';
 import Skills from './Skills/Skills';
 import Experience from './Experience/Experience';
 import Contact from './Contact/Contact';
+import { getProfileById } from './UserProfileService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure({
+    autoClose: 3000,
+    draggable: false,
+    limit: 3,
+    style: {
+        fontSize: '1.5rem'
+    }
+});
 
-function Introduce() {
+export const ThemeContext = createContext();
+
+function UserProfile() {
+    const [profile, setProfile] = useState(null);
+
+    useEffect(() => {
+        let idProfile = document.location.href.split('=')[1];
+        console.log("Current profile: " + idProfile);
+
+        getProfileById(idProfile).then((res) => {
+            if (res?.data) {
+                setProfile(res?.data);
+                return;
+            }
+            throw Error(res.status);
+        }).catch(function (error) {
+            toast.warning("Server error");
+        });
+    }, [])
+
+    const providerValue = {
+        profile
+    }
 
     return (
         <>
-            <Header />
-            <div className={styles.container}>
-                <Home />
-                <AboutMe />
-                <Education />
-                <Skills />
-                <Experience />
-                <Contact />
-            </div>
+            <ThemeContext.Provider value={providerValue}>
+                <Header />
+                <div className={styles.container}>
+                    <Home />
+                    <AboutMe />
+                    <Education />
+                    <Skills />
+                    <Experience />
+                    <Contact />
+                </div>
+            </ThemeContext.Provider>
         </>
     );
 }
 
-export default memo(Introduce)
+export default memo(UserProfile)

@@ -1,8 +1,18 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect, useContext } from "react";
 import styles from "./_about-me.module.scss";
+import { ThemeContext } from '../UserProfile';
 
 function AboutMe() {
+    const providerValue = useContext(ThemeContext);
+    const [profile, setProfile] = useState(null);
 
+    useEffect(() => {
+        if (providerValue?.profile) {
+            setProfile(providerValue.profile);
+        }
+    })
+
+   
     return (
         <>
             {/* Thông tin cá nhân, nghề nghiệp */}
@@ -10,17 +20,15 @@ function AboutMe() {
                 <div className={styles.info}>
                     <div className={styles.content}>
                         <h2 className={styles.name}>
-                            I'm Ryan Thompson
+                            {profile?.introduce?.titleAboutMe}
                         </h2>
                         <h3 className={styles.task}>
-                            I'm a Lead UX & UI designer based in Canada
+
                         </h3>
                         <p className={styles.description}>
-                            I design and develop services for customers of all sizes, specializing in creating stylish,
-                            modern websites, web services and online stores.
+                            {profile?.introduce?.descriptionTask}
 
-                            My passion is to design digital user experiences through the bold interface and meaningful
-                            interactions. Check out my PORTFOLIO
+
                         </p>
                         <div className={styles.box}>
                             <button className={styles.btn}>
