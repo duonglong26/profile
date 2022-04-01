@@ -2,21 +2,6 @@ import React, { memo, useState, useEffect, useContext } from "react";
 import styles from './_education.module.scss';
 import { ThemeContext } from '../UserProfile';
 
-const schools = [
-    {
-        id: 1,
-        name: "Viet Nam - Ba Lan High School",
-        course: "2017-2020",
-        specialized: "None"
-    },
-    {
-        id: 2,
-        name: "Thuy Loi University",
-        course: "2020-2024",
-        specialized: "Information Technology"
-    }
-]
-
 function Education() {
     const providerValue = useContext(ThemeContext);
     const [profile, setProfile] = useState(null);
@@ -25,7 +10,6 @@ function Education() {
             setProfile(providerValue.profile);
         }
     })
-   
 
     return (
         <div className={styles.educations} id='education'>

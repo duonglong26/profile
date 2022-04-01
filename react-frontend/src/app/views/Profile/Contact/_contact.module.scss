@@ -18,14 +18,16 @@
     }
 
     .block {
-        // width: 100rem;
+        background-color: rgb(253, 253, 253);
+        z-index: 5;
         min-height: 46.8rem;
         display: flex;
         box-shadow: rgb(0 0 0 / 20%) 0px 1px 27px -3px;
         border-radius: 1rem;
         flex-wrap: wrap;
-        // align-items: center;
         justify-content: center;
+        position: relative;
+        top: 5rem;
 
         h2 {
             font-size: 2.5rem;
