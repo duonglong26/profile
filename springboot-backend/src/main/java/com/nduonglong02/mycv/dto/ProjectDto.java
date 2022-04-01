@@ -8,6 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ProjectDto extends BaseObjectDto {
     private String name;
     private String participationProcess;

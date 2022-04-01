@@ -123,9 +123,9 @@ function ProfileDialog() {
             case "job":
                 setJob(value);
                 break;
-            case "dateOfBirth":
-                setDateOfBirth(value);
-                break;
+            // case "dateOfBirth":
+            //     setDateOfBirth(value);
+            //     break;
             case "address":
                 setAddress(value);
                 break;
@@ -195,9 +195,9 @@ function ProfileDialog() {
         } else if (job === '') {
             toast.warning("Let's fill job");
             return false;
-        } else if (dateOfBirth === null) {
-            toast.warning("Let's fill date of birth");
-            return false;
+        // } else if (dateOfBirth === null) {
+        //     toast.warning("Let's fill date of birth");
+        //     return false;
         } else if (address === '') {
             toast.warning("Let's fill address");
             return false;
@@ -319,6 +319,8 @@ function ProfileDialog() {
                 descriptionTask: descriptionTask,
             },
             educationList: listSchool,
+            skillList: skillList,
+            projectList: projectList
         }
 
         if (localStorage.getItem('access_token') && validateProfile()) {
@@ -443,7 +445,7 @@ function ProfileDialog() {
                             </label>
                         </div>
                         {/* Date of birth */}
-                        <div className={styles.form}>
+                        {/* <div className={styles.form}>
                             <input
                                 type="date"
                                 className={styles.formInput}
@@ -457,7 +459,7 @@ function ProfileDialog() {
                             >
                                 Date Of Birth
                             </label>
-                        </div>
+                        </div> */}
                         {/* Address */}
                         <div className={styles.form}>
                             <input
@@ -763,6 +765,7 @@ function ProfileDialog() {
                                         <form>
                                             <select
                                                 className={styles.selectIcon}
+                                                value={technology?.iconName ? technology?.iconName : ''}
                                                 onChange={(e) => handleChangeSkill(e.target.value, "iconName", index, indexTech)}
                                             >
                                                 {options.map(opt => (

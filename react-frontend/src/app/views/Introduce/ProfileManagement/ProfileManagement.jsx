@@ -63,8 +63,6 @@ function ProfileManagement() {
     }
 
     const handleLink = (url, type) => {
-        // console.log("Link:/" + url + "/");
-        // console.log("Type" + type)
         if (url === null || url === "") {
             switch (type) {
                 case 'facebook':
@@ -181,7 +179,6 @@ function ProfileManagement() {
                                 {/* content */}
                                 <div className={styles.cardImg}>
                                     <Link
-                                        // to={ROOT_PATH + "/user/" + member?.id}
                                         to={{
                                             pathname: "/user",
                                             search: "?key=" + member?.id,
@@ -195,8 +192,6 @@ function ProfileManagement() {
                                 </div>
                                 <div className={styles.cardContent}>
                                     <Link
-                                        // to={ROOT_PATH + "/user/" + member?.id},
-                                        // search: "?key=value",
                                         to={{
                                             pathname: "/user",
                                             search: "?key=" + member?.id,
@@ -212,25 +207,25 @@ function ProfileManagement() {
                                     {/* Danh sách link liên kết mạng xã hội */}
                                     <p className={styles.listIconsSocial}>
                                         <a
-                                            href={member?.linkFb}
+                                            href={member?.personalInformation?.linkFacebook}
                                             onClick={() => handleLink(member?.personalInformation?.linkFacebook, 'facebook')}
                                         >
                                             <FaFacebook className={styles.icon} />
                                         </a>
                                         <a
-                                            href={member?.linkTwitter}
+                                            href={member?.personalInformation?.linkTwitter}
                                             onClick={() => handleLink(member?.personalInformation?.linkTwitter, 'twitter')}
                                         >
                                             <FaTwitter className={styles.icon} />
                                         </a>
                                         <a
-                                            href={member?.linkInstagram}
+                                            href={member?.personalInformation?.linkInstagram}
                                             onClick={() => handleLink(member?.personalInformation?.linkInstagram, 'instagram')}
                                         >
                                             <FaInstagram className={styles.icon} />
                                         </a>
                                         <a
-                                            href={member?.linkGithub}
+                                            href={member?.personalInformation?.linkGithub}
                                             onClick={() => handleLink(member?.personalInformation?.linkGithub, 'github')}
                                         >
                                             <GoMarkGithub className={styles.icon} />
