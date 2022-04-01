@@ -39,4 +39,10 @@ public class ProfileController {
         Boolean result = profileService.deleteById(UUID.fromString(id));
         return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfileDto> getProfile(@PathVariable("id") String id) {
+        ProfileDto result = profileService.getById(UUID.fromString(id));
+        return new ResponseEntity<>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    }
 }

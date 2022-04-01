@@ -1,17 +1,18 @@
 @import "../../styles/root";
 
 .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    background-image: url(../../../../public/assets/images/macos-big-sur-abstract-5k-je.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   background: rgb(148, 177, 197);
+   //  background-image: url(../../../../public/assets/images/binary-code-abstract-lu-1920x1080.jpg);
+   // background-repeat: no-repeat;
+   // background-attachment: fixed;
+   // background-position: center;
+   // -webkit-background-size: cover;
+   // -moz-background-size: cover;
+   // -o-background-size: cover;
+   // background-size: cover;
 }
