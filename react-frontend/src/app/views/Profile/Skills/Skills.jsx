@@ -1,10 +1,11 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useContext } from 'react';
 import styles from './_skills.module.scss';
 import clsx from 'clsx';
 import * as Fa from "react-icons/fa";
 import { DiMysql, DiMsqlServer } from "react-icons/di";
 import { SiSpringboot } from "react-icons/si";
 import { GiTortoise } from "react-icons/gi";
+import { ThemeContext } from '../UserProfile';
 
 const skills = [
   {
@@ -109,21 +110,30 @@ const skills = [
 ];
 
 function Skills() {
-  const [currentCategory, setCurrentCategory] = useState();
+  const [currentCategory, setCurrentCategory] = useState(null);
+  const providerValue = useContext(ThemeContext);
+  const [profile, setProfile] = useState(null);
+  const [change, setChange] = useState(false);
+
+  useEffect(() => {
+      if (providerValue?.profile) {
+          setProfile(providerValue.profile);
+      }
+  })
 
   useEffect(() => {
     // Set current show category
-    if (skills && skills.length > 0) {
-      setCurrentCategory(skills[0])
+    if (profile?.skillList && profile?.skillList.length > 0) {
+      setCurrentCategory(profile?.skillList[0]);
     }
-  }, [])
+  }, [profile])
 
   useEffect(() => {
-
+    setChange(!change);
   }, [currentCategory])
 
   const handleChangeCategory = (obj) => {
-    setCurrentCategory(() => obj)
+    setCurrentCategory(obj)
   }
 
   const handleShowIcon = (iconName) => {
@@ -184,7 +194,7 @@ function Skills() {
         <ul
           className={styles.categories}
         >
-          {skills.map((category, index) => (
+          {profile?.skillList.map((category, index) => (
             <li
               key={index}
               className={
@@ -195,7 +205,7 @@ function Skills() {
               }
               onClick={() => handleChangeCategory(category)}
             >
-              {category.name}
+              {category?.name}
             </li>
           ))}
         </ul>
@@ -204,14 +214,14 @@ function Skills() {
         <ul
           className={styles.technologies}
         >
-          {currentCategory?.technologies?.map((technology) => (
+          {currentCategory?.technologyList?.map((technology, index) => (
             <li
-              key={technology.id}
+              key={index}
               className={styles.item}
             >
               {/* Biểu tượng của ngôn ngữ */}
               <div className={styles.boxSymbol}>
-                {handleShowIcon(technology?.icon)}
+                {handleShowIcon(technology?.iconName)}
               </div>
               {/* Tên của ngôn ngữ */}
               <div className={styles.name}>
