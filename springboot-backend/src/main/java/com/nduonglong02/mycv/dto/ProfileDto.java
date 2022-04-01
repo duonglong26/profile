@@ -2,6 +2,7 @@ package com.nduonglong02.mycv.dto;
 
 import com.globits.core.dto.BaseObjectDto;
 import com.nduonglong02.mycv.domain.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProfileDto extends BaseObjectDto {
     private PersonalInformationDto personalInformation;
     private IntroduceDto introduce;
@@ -40,6 +42,18 @@ public class ProfileDto extends BaseObjectDto {
                     this.educationList = new ArrayList<>();
                     for (Education edu : entity.getEducationList()) {
                         educationList.add(new EducationDto(edu));
+                    }
+                }
+                if (!CollectionUtils.isEmpty(entity.getSkillList())) {
+                    this.skillList = new ArrayList<>();
+                    for (Skill skill : entity.getSkillList()) {
+                        this.skillList.add(new SkillDto(skill));
+                    }
+                }
+                if (!CollectionUtils.isEmpty(entity.getProjectList())) {
+                    this.projectList = new ArrayList<>();
+                    for (Project project : entity.getProjectList()) {
+                        this.projectList.add(new ProjectDto(project));
                     }
                 }
             }

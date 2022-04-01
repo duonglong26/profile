@@ -6,6 +6,7 @@ import com.nduonglong02.mycv.domain.Technology;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SkillDto extends BaseObjectDto {
     private String name;
-    private List<TechnologyDto> technologyList = new ArrayList<>();
+    private List<TechnologyDto> technologyList;
     private ProfileDto profile;
 
     public SkillDto(Skill entity) {
@@ -31,7 +32,8 @@ public class SkillDto extends BaseObjectDto {
             this.modifiedBy = entity.getModifiedBy();
             this.name = entity.getName();
             this.profile = new ProfileDto(entity.getProfile(), false);
-            if (isGetChild) {
+            if (isGetChild && !CollectionUtils.isEmpty(entity.getTechnologyList())) {
+                this.technologyList = new ArrayList<>();
                 for (Technology tech : entity.getTechnologyList()) {
                     this.technologyList.add(new TechnologyDto(tech));
                 }
