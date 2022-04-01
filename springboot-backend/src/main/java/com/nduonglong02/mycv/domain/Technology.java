@@ -22,7 +22,7 @@ public class Technology extends BaseObject {
     @Column(name = "details")
     private String details;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "skill_id")
     private Skill skill;
 

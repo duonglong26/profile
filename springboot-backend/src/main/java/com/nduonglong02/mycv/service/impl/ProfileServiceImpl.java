@@ -1,14 +1,8 @@
 package com.nduonglong02.mycv.service.impl;
 
 import com.globits.core.service.impl.GenericServiceImpl;
-import com.nduonglong02.mycv.domain.Education;
-import com.nduonglong02.mycv.domain.Introduce;
-import com.nduonglong02.mycv.domain.PersonalInformation;
-import com.nduonglong02.mycv.domain.Profile;
-import com.nduonglong02.mycv.dto.EducationDto;
-import com.nduonglong02.mycv.dto.IntroduceDto;
-import com.nduonglong02.mycv.dto.PersonalInformationDto;
-import com.nduonglong02.mycv.dto.ProfileDto;
+import com.nduonglong02.mycv.domain.*;
+import com.nduonglong02.mycv.dto.*;
 import com.nduonglong02.mycv.repository.PersonalInformationRepository;
 import com.nduonglong02.mycv.repository.ProfileRepository;
 import com.nduonglong02.mycv.service.ProfileService;
@@ -42,14 +36,14 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
                 entity = new Profile();
             }
 
-//            Personal Information
+            // Personal Information
             if (dto.getPersonalInformation() != null) {
                 if (entity.getPersonalInformation() == null) {
                     entity.setPersonalInformation(new PersonalInformation());
                 }
                 setValuePersonalInformation(entity.getPersonalInformation(), dto.getPersonalInformation());
             }
-//            Introduce
+            // Introduce
             if (dto.getIntroduce() != null) {
                 if (entity.getIntroduce() == null) {
                     entity.setIntroduce(new Introduce());
@@ -57,9 +51,19 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
                 setValueIntroduce(entity.getIntroduce(), dto.getIntroduce());
             }
 
-//            Education List
+            // Education List
             if (!CollectionUtils.isEmpty(dto.getEducationList())) {
                 setValueEducationList(entity, dto.getEducationList());
+            }
+
+            // Skill list
+            if (!CollectionUtils.isEmpty(dto.getSkillList())) {
+                setValueSkillList(entity, dto.getSkillList());
+            }
+
+            // Project list
+            if (!CollectionUtils.isEmpty(dto.getProjectList())) {
+                setValueProjectList(entity, dto.getProjectList());
             }
 
             entity = profileRepository.save(entity);
@@ -130,6 +134,56 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
             education.setMajor(dto.getMajor());
             education.setProfile(profile);
             profile.getEducationList().add(education);
+        }
+    }
+
+    public void setValueSkillList(Profile profile, List<SkillDto> skillListIn) {
+        if (profile.getSkillList() != null) {
+            profile.getSkillList().clear();
+        } else {
+            profile.setSkillList(new ArrayList<>());
+        }
+        for (SkillDto dto : skillListIn) {
+            Skill skill = new Skill();
+            skill.setName(dto.getName());
+            skill.setProfile(profile);
+            // Technology list
+            if (!CollectionUtils.isEmpty(dto.getTechnologyList())) {
+                setValueTechnologyList(skill, dto.getTechnologyList());
+            }
+            profile.getSkillList().add(skill);
+        }
+    }
+
+    public void setValueTechnologyList(Skill skill, List<TechnologyDto> techListIn) {
+        if (skill.getTechnologyList() != null) {
+            skill.getTechnologyList().clear();
+        } else {
+            skill.setTechnologyList(new ArrayList<>());
+        }
+        for (TechnologyDto dto : techListIn) {
+            Technology tech = new Technology();
+            tech.setName(dto.getName());
+            tech.setIconName(dto.getIconName());
+            tech.setDetails(dto.getDetails());
+            tech.setSkill(skill);
+            skill.getTechnologyList().add(tech);
+        }
+    }
+
+    public void setValueProjectList(Profile profile, List<ProjectDto> projectListIn) {
+        if (!CollectionUtils.isEmpty(profile.getProjectList())) {
+            profile.getProjectList().clear();
+        } else {
+            profile.setProjectList(new ArrayList<>());
+        }
+        for (ProjectDto dto : projectListIn) {
+            Project project = new Project();
+            project.setName(dto.getName());
+            project.setParticipationProcess(dto.getParticipationProcess());
+            project.setDescription(dto.getDescription());
+            project.setProfile(profile);
+            profile.getProjectList().add(project);
         }
     }
 }
