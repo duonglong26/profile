@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import styles from './_header.module.scss';
 import { Link } from "react-router-dom";
 import { ROOT_PATH } from "../../../../Const";
+import { AiOutlineBars } from "react-icons/ai";
 
 function Header() {
 
@@ -65,6 +66,9 @@ function Header() {
                             Contact
                         </a>
                     </li>
+                
+                    <AiOutlineBars className="iconNav"/>
+                
                 </ul>
             </nav>
         </header>

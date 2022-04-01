@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect, useContext } from "react";
 import styles from './_education.module.scss';
+import { ThemeContext } from '../UserProfile';
 
 const schools = [
     {
@@ -17,22 +18,31 @@ const schools = [
 ]
 
 function Education() {
+    const providerValue = useContext(ThemeContext);
+    const [profile, setProfile] = useState(null);
+    useEffect(() => {
+        if (providerValue?.profile) {
+            setProfile(providerValue.profile);
+        }
+    })
+   
 
     return (
         <div className={styles.educations} id='education'>
             <p className={styles.title}>Education</p>
             <div className={styles.schools}>
-                {schools.map((school) => (
+                {profile?.educationList.map((school) => (
                     <div
                         className={styles.school}
                         key={school.id}
                     >
+                        {console.log(school)}
                         <p className={styles.name}>
-                            {school?.name}
+                            {school?.schoolName}
                         </p>
                         <p className={styles.specialized}>
-                            <span>Specialized: </span>
-                            {school?.specialized}
+                            <span>Major: </span>
+                            {school?.major}
                         </p>
                         <p className={styles.course}>
                             <span>Course: </span>

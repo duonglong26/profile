@@ -82,6 +82,15 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
         return null;
     }
 
+    @Override
+    public ProfileDto getById(UUID id) {
+        if (id != null) {
+            Profile result = profileRepository.findById(id).orElse(null);
+            return new ProfileDto(result);
+        }
+        return null;
+    }
+
     public void setValuePersonalInformation(PersonalInformation entity, PersonalInformationDto dto) {
         if (entity != null && dto != null) {
             entity.setFirstName(dto.getFirstName());

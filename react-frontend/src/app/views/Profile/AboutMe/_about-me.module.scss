@@ -3,7 +3,7 @@
 .aboutMe {
     z-index: 1;
     width: 100%;
-    height: 62rem;
+    min-height: 62rem;
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
@@ -17,6 +17,8 @@
         /* background-color: rgb(163, 163, 163); */
         justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
+        margin: 1rem 0 3rem;
 
         .content {
             width: 54rem;
@@ -41,9 +43,10 @@
         }
 
         .image {
-            background-color: rgba(230, 230, 230, 0.1);
-            width: 57rem;
-            height: 100%;
+            // background-color: rgba(230, 230, 230, 0.1);
+            background-color: rgba(75, 186, 194, 0.1);
+            width: 45rem;
+            height: 45rem;
             padding: 1.5rem;
             display: flex;
             justify-content: center;
@@ -51,20 +54,32 @@
         }
     }
 }
-
-.couterRow {
-    width: 100%;
-    background-color: $background-color;
-    display: flex;
-    justify-content: center;
-
-    .counterBox {
-        width: 1100px;
-        height: 162px;
-        background-color: $white-color;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 27px -3px;
-        position: relative;
-        top: calc(-162px / 2);
-        z-index: 1;
+// Thiết bị màn hình nhỏ hơn 1200px
+    @media only screen and (max-width: 1199px) {
+        .aboutMe{
+            
+            .info{
+                .content{
+                    align-items: center;
+                    .description{
+                        margin: 5rem 5rem;
+                    }
+                }
+            }
+        }
     }
-}
+
+    // // Thiết bị màn hình nhỏ hơn 1024px
+    @media only screen and (max-width: 1023px) {
+        .aboutMe{
+            
+            .info{
+                .content{
+                    align-items: center;
+                    .description{
+                        margin: 5rem 5rem;
+                    }
+                }
+            }
+        }
+    }
