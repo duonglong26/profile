@@ -10,7 +10,6 @@ function Education() {
             setProfile(providerValue.profile);
         }
     })
-   
 
     return (
         <div className={styles.educations} id='education'>
