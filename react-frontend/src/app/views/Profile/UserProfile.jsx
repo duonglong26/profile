@@ -10,6 +10,8 @@ import Contact from './Contact/Contact';
 import { getProfileById } from './UserProfileService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AiFillCaretUp } from "react-icons/ai";
+import Footer from "./Footer/Footer";
 
 toast.configure({
     autoClose: 3000,
@@ -55,7 +57,12 @@ function UserProfile() {
                     <Skills />
                     <Experience />
                     <Contact />
+                    <Footer />
                 </div>
+                <div className={styles.backTotop}>
+                    <AiFillCaretUp/>
+                </div>
+                
             </ThemeContext.Provider>
         </>
     );
