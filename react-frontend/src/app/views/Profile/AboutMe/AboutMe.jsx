@@ -2,6 +2,7 @@ import React, { memo, useState, useEffect, useContext } from "react";
 import styles from "./_about-me.module.scss";
 import { ThemeContext } from '../UserProfile';
 import { IoAccessibilityOutline } from "react-icons/io5";
+import { API_ENPOINT } from '../../../../Const'
 
 function AboutMe() {
     const providerValue = useContext(ThemeContext);
@@ -19,6 +20,17 @@ function AboutMe() {
             {/* Thông tin cá nhân, nghề nghiệp */}
             <div className={styles.aboutMe} id='about-me'>
                 <div className={styles.info}>
+                    <div className={styles.boxImage}>
+                        {profile?.id &&
+                            <img
+                                src={
+                                    API_ENPOINT + "/api/image/" + profile?.id + ".png"
+                                }
+                                alt="picture-of-myself"
+                                className={styles.image}
+                            />
+                        }
+                    </div>
                     <div className={styles.content}>
                         <h2 className={styles.name}>
                             {profile?.introduce?.titleAboutMe}
@@ -38,9 +50,6 @@ function AboutMe() {
                             </a>
                         </div>
                     </div>
-                    {/* <div className={styles.image}> */}
-                    <IoAccessibilityOutline className={styles.image} />
-                    {/* </div> */}
                 </div>
             </div>
         </>
