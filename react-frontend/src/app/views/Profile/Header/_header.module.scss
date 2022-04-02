@@ -5,7 +5,6 @@
     height: $height-header;
     display: flex;
     justify-content: center;
-    // position: fixed;
     box-shadow: 0 0 10px rgba(191, 197, 197, 0.5);
     z-index: 99;
     background: $white-color;
@@ -33,7 +32,6 @@
         }
 
         .listItem {
-            // width: 65%;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -41,7 +39,7 @@
 
             .item {
                 padding: 0 20px;
-                
+
                 .link {
                     text-decoration: none;
                     color: black;
@@ -51,26 +49,57 @@
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     text-transform: uppercase;
+                    &:hover {
+                        border-bottom: 0.15rem solid rgb(194, 40, 73);
+                    }
                 }
             }
-        .iconNav{
-            display: none;
+            .iconNav {
+                display: none;
+            }
         }
-        }
-
     }
 }
+
+// Thiết bị màn hình nhỏ hơn 900px
 @media only screen and (max-width: 899px) {
-    .header{
-        .nav{
-            .title{
-                font-size: 2.0rem;
+    .header {
+        .nav {
+            .title {
+                font-size: 2rem;
             }
-           .listItem{
-               display: none;
-           }
-                
+            .listItem {
+                display: none;
             }
         }
+    }
 }
 
+// Thiết bị màn hình nhỏ hơn 768px
+@media only screen and (max-width: 767px) {
+}
+
+// Thiết bị màn hình nhỏ hơn 600px
+@media only screen and (max-width: 599px) {
+    .header {
+        height: 5rem;
+    }
+}
+
+// Thiết bị màn hình nhỏ hơn 480px
+@media only screen and (max-width: 479px) {
+    .header {
+        // height: 70px;
+        .nav {
+            width: 100%;
+            .title {
+                .link {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+// Thiết bị màn hình nhỏ hơn 320px
+@media only screen and (max-width: 319px) {
+}

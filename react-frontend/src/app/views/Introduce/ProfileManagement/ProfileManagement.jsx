@@ -12,7 +12,7 @@ import {
     FaPencilAlt
 } from "react-icons/fa";
 import { GoMarkGithub } from "react-icons/go";
-import { ROOT_PATH } from "../../../../Const";
+// import { ROOT_PATH } from "../../../../Const";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAllProfile, deleteProfileById } from './ProfileService';
