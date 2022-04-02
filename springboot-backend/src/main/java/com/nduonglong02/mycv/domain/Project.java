@@ -22,7 +22,7 @@ public class Project extends BaseObject {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private Profile profile;
 

@@ -2,7 +2,6 @@
 
 .experience {
     width: 100%;
-    height: 60rem;
     background-color: $background-color;
     display: flex;
     flex-direction: column;
@@ -18,6 +17,8 @@
     .products {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
+
 
         .product {
             width: 50rem;
@@ -31,23 +32,6 @@
             line-height: 3rem;
             padding: 2rem;
             box-sizing: border-box;
-
-            // .image {
-            //     // background-color: red;
-            //     display: flex;
-            //     justify-content: center;
-
-            //     img {
-            //         width: 13rem;
-            //         height: 13rem;
-            //         background-color: rgb(219, 43, 87);
-            //         position: relative;
-            //         top: -7rem;
-            //         border-radius: 10rem;
-            //         border: 5px solid $white-color;
-            //         box-shadow: rgb(0 0 0 / 20%) 0px 1px 27px -3px;
-            //     }
-            // }
 
             .name {
                 display: inline-block;
