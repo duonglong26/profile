@@ -2,7 +2,7 @@ import React, { memo, useContext, useState, useEffect } from 'react';
 import styles from './_profile_dialog.module.scss';
 import { MdClose } from "react-icons/md";
 import { ThemeContext } from '../ProfileManagement';
-import { newProfile } from '../../ProfileManagement/ProfileService';
+import { newProfile, uploadImage } from '../../ProfileManagement/ProfileService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaMinusCircle, FaPlus } from "react-icons/fa";
@@ -38,7 +38,6 @@ function ProfileDialog() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [job, setJob] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState(null);
     const [address, setAddress] = useState('')
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkInstagram, setLinkInstagram] = useState('');
@@ -46,6 +45,7 @@ function ProfileDialog() {
     const [linkGithub, setLinkGithub] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [image, setImage] = useState(null);
     // Inrtroduce-AboutMe
     const [sentenceWelcome, setSentenceWelcome] = useState('');
     const [introductionUser, setIntroductionUser] = useState('');
@@ -215,6 +215,9 @@ function ProfileDialog() {
         } else if (descriptionTask === '') {
             toast.warning("Let's fill description task");
             return false;
+        } else if (image === null) {
+            toast.warning("Let's choose image for profile");
+            return false;
         }
         return true;
     }
@@ -295,7 +298,6 @@ function ProfileDialog() {
                 firstName: firstName,
                 lastName: lastName,
                 job: job,
-                dateOfBirth: dateOfBirth,
                 address: address,
                 linkFacebook: linkFacebook,
                 linkInstagram: linkInstagram,
@@ -319,9 +321,15 @@ function ProfileDialog() {
         if (localStorage.getItem('access_token') && validateProfile()) {
             newProfile(obj).then((res) => {
                 if (res?.data) {
-                    toast.success("Saved");
+                    toast.success("Success");
                     handleClose();
                     providerValue.handleLoadPageData();
+                    // save image of profile
+                    console.log(image)
+                    uploadImage(image, res.data.id).then((res) => {
+                    }).catch(function (error) {
+                        toast.warning("Save image fail");
+                    })
                     return;
                 }
                 throw Error(res.status);
@@ -370,6 +378,13 @@ function ProfileDialog() {
         newListProject.splice(index, 1); //delete 1 element from 'index'
         return setProjectList([...newListProject]);
     }
+
+    const handleChangeImage = (e) => {
+        setImage(e.target.files[0]);
+    }
+    console.log(typeof (image));
+    console.log("Image: ");
+    console.log(image);
 
     return (
         <div className={styles.container}>
@@ -547,6 +562,26 @@ function ProfileDialog() {
                                 className={styles.formLabel}
                             >
                                 Phone
+                            </label>
+                        </div>
+                        {/* Image */}
+                        <div className={styles.form}>
+                            <input
+                                type="file"
+                                className={styles.formInput}
+                                title="Upload your picture"
+                                autoComplete="off"
+                                placeholder=" "
+                                // accept="image/*"
+                                // value={image ? image : ""}
+                                onChange={(input) => {
+                                    handleChangeImage(input)
+                                }}
+                            />
+                            <label
+                                className={styles.formLabel}
+                            >
+                                Picture Yourself
                             </label>
                         </div>
                     </div>

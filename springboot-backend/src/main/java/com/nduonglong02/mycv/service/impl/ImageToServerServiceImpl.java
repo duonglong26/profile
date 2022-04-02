@@ -13,7 +13,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
 
 @Service
 public class ImageToServerServiceImpl implements ImageToServerService {
@@ -22,11 +21,11 @@ public class ImageToServerServiceImpl implements ImageToServerService {
     private String fileUpload;
 
     @Override
-    public FileDescriptionDto uploadImageToServer(MultipartFile file) {
+    public FileDescriptionDto uploadImageToServer(MultipartFile file, String idProfile) {
 
         FileDescriptionDto fileDescriptionDto = null;
         try {
-            String fileName = UUID.randomUUID().toString() + ".png";
+            String fileName = idProfile + ".png";
 
             String filePath = fileUpload;
             try {

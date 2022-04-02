@@ -10,7 +10,7 @@ import java.io.IOException;
 @Service
 public interface ImageToServerService {
 
-    FileDescriptionDto uploadImageToServer(MultipartFile file);
+    FileDescriptionDto uploadImageToServer(MultipartFile file, String idProfile);
 
     void getImageFromServer(HttpServletResponse response, String fileName) throws IOException;
 }

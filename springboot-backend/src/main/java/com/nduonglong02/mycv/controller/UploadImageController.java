@@ -19,17 +19,19 @@ public class UploadImageController {
     ImageToServerService imageToServerService;
 
     @PostMapping
-    public ResponseEntity<FileDescriptionDto> uploadImageToServer(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<FileDescriptionDto> uploadImageToServer(@RequestParam("file") MultipartFile file, @RequestParam("idProfile") String idProfile ) {
         FileDescriptionDto result = null;
         try {
-            result = imageToServerService.uploadImageToServer(file);
+            if (!idProfile.equals("")) {
+                result = imageToServerService.uploadImageToServer(file, idProfile);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<FileDescriptionDto>(result, HttpStatus.OK);
+        return new ResponseEntity<FileDescriptionDto>(result, (result != null) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping(path = "/{filename:.+}")
+    @GetMapping(path = "/{filename}")
     public void getImageByName(HttpServletResponse response, @PathVariable(value = "filename")String fileName)throws IOException {
         imageToServerService.getImageFromServer(response, fileName);
     }
