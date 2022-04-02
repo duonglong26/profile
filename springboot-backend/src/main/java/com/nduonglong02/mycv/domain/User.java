@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -24,20 +23,11 @@ public class User extends BaseObject {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> userRoleList;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "personal_information_id")
-//    private PersonalInformation personalInformation;
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "introduce")
-//    private Introduce introduce;
-//
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Education> educationList;
-//
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Skill> skillList;
-//
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Project> projectList;
+    public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

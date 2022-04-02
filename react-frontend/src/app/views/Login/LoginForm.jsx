@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { login } from './LoginService';
 import { toast } from 'react-toastify';
 import styles from './_login.module.scss';
-import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
 toast.configure({
     autoClose: 3000,
@@ -14,6 +14,7 @@ toast.configure({
 });
 
 export default function LoginForm() {
+    let navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -47,37 +48,13 @@ export default function LoginForm() {
                 console.log(res.data);
                 localStorage.setItem("access_token", res.data.access_token)
                 toast.success("Loggin sucess");
+                navigate('/'); // then login success -> go to home page
                 return;
             }
             throw Error(res.status);
         }).catch(function (error) {
             toast.warning("Username or password wrong");
         });
-    }
-
-    // const handleLoadUsers = () => {
-    //     let axios = require('axios');
-
-    //     let config = {
-    //         method: 'get',
-    //         url: '/api/users',
-    //         headers: {
-    //             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-    //         }
-    //     };
-
-    //     axios(config)
-    //         .then(function (response) {
-    //             console.log(JSON.stringify(response.data));
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
-
-    const handleLogout = () => {
-        localStorage.removeItem("access_token")
-        toast.success("Logged out");
     }
 
     return (
@@ -107,13 +84,6 @@ export default function LoginForm() {
                         onClick={() => handleFormSubmit()}
                     >
                         LOGIN
-                    </button>
-                    <button
-                        className={clsx(styles.btn, styles.logout)}
-                        type="button"
-                        onClick={() => handleLogout()}
-                    >
-                        LOGOUT
                     </button>
                 </div>
             </div>

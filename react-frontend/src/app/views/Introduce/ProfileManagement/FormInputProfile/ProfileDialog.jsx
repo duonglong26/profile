@@ -84,7 +84,6 @@ function ProfileDialog() {
             setFirstName(obj?.personalInformation?.firstName ? obj?.personalInformation?.firstName : '');
             setLastName(obj?.personalInformation?.lastName ? obj?.personalInformation?.lastName : '');
             setJob(obj?.personalInformation?.job ? obj?.personalInformation?.job : '');
-            setDateOfBirth(obj?.personalInformation?.dateOfBirth ? obj?.personalInformation?.dateOfBirth : '');
             setAddress(obj?.personalInformation?.address ? obj?.personalInformation?.address : '');
             setLinkFacebook(obj?.personalInformation?.linkFacebook ? obj?.personalInformation?.linkFacebook : '');
             setLinkInstagram(obj?.personalInformation?.linkInstagram ? obj?.personalInformation?.linkInstagram : '');
@@ -123,9 +122,6 @@ function ProfileDialog() {
             case "job":
                 setJob(value);
                 break;
-            // case "dateOfBirth":
-            //     setDateOfBirth(value);
-            //     break;
             case "address":
                 setAddress(value);
                 break;
@@ -195,9 +191,6 @@ function ProfileDialog() {
         } else if (job === '') {
             toast.warning("Let's fill job");
             return false;
-        // } else if (dateOfBirth === null) {
-        //     toast.warning("Let's fill date of birth");
-        //     return false;
         } else if (address === '') {
             toast.warning("Let's fill address");
             return false;
@@ -444,22 +437,6 @@ function ProfileDialog() {
                                 Job
                             </label>
                         </div>
-                        {/* Date of birth */}
-                        {/* <div className={styles.form}>
-                            <input
-                                type="date"
-                                className={styles.formInput}
-                                autoComplete="off"
-                                placeholder=" "
-                                value={dateOfBirth ? dateOfBirth : ''}
-                                onChange={(input) => handleChange(input.target.value, "dateOfBirth")}
-                            />
-                            <label
-                                className={styles.formLabel}
-                            >
-                                Date Of Birth
-                            </label>
-                        </div> */}
                         {/* Address */}
                         <div className={styles.form}>
                             <input

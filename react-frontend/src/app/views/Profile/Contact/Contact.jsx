@@ -4,7 +4,7 @@ import * as Fa from "react-icons/fa";
 
 function Contact() {
   return (
-    <div className={styles.contact} id='contact-us'>
+    <div className={styles.contact} id='contact'>
       <p className={styles.title}>Contact</p>
       <div className={styles.block}>
         {/* Thông tin liên lạc */}
