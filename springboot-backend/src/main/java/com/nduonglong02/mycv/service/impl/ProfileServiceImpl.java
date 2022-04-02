@@ -92,21 +92,20 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
             try
             {
                 Files.deleteIfExists(Paths.get(filePath + id + ".png"));
+                Files.deleteIfExists(Paths.get("Recycle Bin/" + id + ".png"));
             }
             catch(NoSuchFileException e)
             {
-                System.out.println("No such file/directory exists");
+                log.error("No such file/directory exists");
             }
             catch(DirectoryNotEmptyException e)
             {
-                System.out.println("Directory is not empty.");
+                log.error("Directory is not empty");
             }
             catch(IOException e)
             {
-                System.out.println("Invalid permissions.");
+                log.error("Invalid permissions.");
             }
-
-            System.out.println("Deletion successful.");
             profileRepository.deleteById(id);
             return true;
         }

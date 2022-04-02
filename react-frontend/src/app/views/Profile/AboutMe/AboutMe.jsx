@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect, useContext } from "react";
 import styles from "./_about-me.module.scss";
 import { ThemeContext } from '../UserProfile';
-import { IoAccessibilityOutline } from "react-icons/io5";
 import { API_ENPOINT } from '../../../../Const'
 
 function AboutMe() {
@@ -22,6 +21,7 @@ function AboutMe() {
                 <div className={styles.info}>
                     <div className={styles.boxImage}>
                         {profile?.id &&
+                            // eslint-disable-next-line jsx-a11y/img-redundant-alt
                             <img
                                 src={
                                     API_ENPOINT + "/api/image/" + profile?.id + ".png"
