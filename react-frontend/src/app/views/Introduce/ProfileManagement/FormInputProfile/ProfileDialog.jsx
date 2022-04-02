@@ -215,7 +215,7 @@ function ProfileDialog() {
         } else if (descriptionTask === '') {
             toast.warning("Let's fill description task");
             return false;
-        } else if (image === null) {
+        } else if (image === null && id === null) {
             toast.warning("Let's choose image for profile");
             return false;
         }
@@ -324,12 +324,13 @@ function ProfileDialog() {
                     toast.success("Success");
                     handleClose();
                     providerValue.handleLoadPageData();
-                    // save image of profile
-                    console.log(image)
-                    uploadImage(image, res.data.id).then((res) => {
-                    }).catch(function (error) {
-                        toast.warning("Save image fail");
-                    })
+                    // save image of profile - img did validate require
+                    if (image) {
+                        uploadImage(image, res.data.id).then((res) => {
+                        }).catch(function (error) {
+                            toast.warning("Save image fail");
+                        })
+                    }
                     return;
                 }
                 throw Error(res.status);
