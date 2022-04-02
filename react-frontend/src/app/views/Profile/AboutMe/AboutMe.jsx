@@ -1,6 +1,7 @@
 import React, { memo, useState, useEffect, useContext } from "react";
 import styles from "./_about-me.module.scss";
 import { ThemeContext } from '../UserProfile';
+import { IoAccessibilityOutline } from "react-icons/io5";
 
 function AboutMe() {
     const providerValue = useContext(ThemeContext);
@@ -12,7 +13,6 @@ function AboutMe() {
             setProfile(providerValue.profile);
         }
     })
-
 
     return (
         <>
@@ -38,9 +38,9 @@ function AboutMe() {
                             </a>
                         </div>
                     </div>
-                    <div className={styles.image}>
-
-                    </div>
+                    {/* <div className={styles.image}> */}
+                    <IoAccessibilityOutline className={styles.image} />
+                    {/* </div> */}
                 </div>
             </div>
         </>

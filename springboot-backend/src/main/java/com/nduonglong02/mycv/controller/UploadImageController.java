@@ -29,7 +29,7 @@ public class UploadImageController {
         return new ResponseEntity<FileDescriptionDto>(result, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/image/{filename:.+}")
+    @GetMapping(path = "/{filename:.+}")
     public void getImageByName(HttpServletResponse response, @PathVariable(value = "filename")String fileName)throws IOException {
         imageToServerService.getImageFromServer(response, fileName);
     }
