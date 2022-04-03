@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useState, useEffect, useContext } from 'react';
 import styles from './_skills.module.scss';
 import clsx from 'clsx';

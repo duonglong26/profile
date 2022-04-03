@@ -6,6 +6,7 @@ html {
     line-height: 1.6rem;
     color: #06619c;
     scroll-behavior: smooth;
+    z-index: 0;
 }
 
 // ::selection {
@@ -38,35 +39,6 @@ html {
     box-shadow: -0.5px 8px 25px rgb(102, 172, 194);
 }
 
-// .boxIcon {
-//     width: 5rem;
-//     height: 5rem;
-//     background: rgb(255, 255, 255);
-//     position: absolute;
-//     z-index: 100;
-//     right: 5rem;
-//     border-radius: 3rem;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     cursor: pointer;
-
-//     &:hover {
-//         background: rgb(149, 163, 150);
-//         transition: all 0.3s ease;
-//     }
-
-//     &:active {
-//         color: white;
-//         background: rgb(72, 102, 80);
-//         transition: all 0.3s ease;
-//     }
-
-//     .iconPen {
-//         font-size: 2.4rem;
-//     }
-// }
-
 .boxIconTrash {
     width: 5rem;
     height: 5rem;
@@ -84,9 +56,6 @@ html {
     .icon {
         color: rgb(150, 47, 47);
         position: relative;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
     }
 
     &:hover {
@@ -137,11 +106,6 @@ html {
         background: none;
         box-sizing: border-box;
 
-        &:hover {
-        }
-
-        &:focus {
-        }
     }
 
     &Label {
