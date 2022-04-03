@@ -67,7 +67,7 @@ function Header() {
                         </a>
                     </li>
                 
-                    <AiOutlineBars className="iconNav"/>
+                    {/* <AiOutlineBars className="iconNav"/> */}
                 
                 </ul>
             </nav>
