@@ -46,6 +46,13 @@ function UserProfile() {
         profile
     }
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <>
             <ThemeContext.Provider value={providerValue}>
@@ -59,11 +66,14 @@ function UserProfile() {
                     <Contact />
                     <Footer />
                 </div>
-                <div className={styles.backTotop}>
-                    <AiFillCaretUp/>
-                </div>
-                
             </ThemeContext.Provider>
+            <div
+                className={styles.backTotop}
+                title="Back to top"
+                onClick={() => scrollToTop()}
+            >
+                <AiFillCaretUp />
+            </div>
         </>
     );
 }

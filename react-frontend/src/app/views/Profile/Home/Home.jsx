@@ -1,12 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useState, useEffect, useContext } from "react";
 import styles from './_home.module.scss';
-import { Link } from "react-router-dom";
 import { ThemeContext } from '../UserProfile';
 
 
 function Home() {
     const providerValue = useContext(ThemeContext);
-    const [isOpenHomeDialog, setIsOpenHomeDialog] = useState(false);
     const [profile, setProfile] = useState(null);
 
     useEffect(() => {
@@ -29,10 +28,12 @@ function Home() {
                     {profile?.introduce?.sentenceWelcome}
                 </span>
                 <div className={styles.box}>
-                    <button className={styles.btn}>
+                    <a 
+                        className={styles.btn}
+                        href="#contact"
+                    >
                         Contact us
-                        {/* <i className={styles.}"fa-solid fa-arrow-right"></i> */}
-                    </button>
+                    </a>
                 </div>
             </div>
 

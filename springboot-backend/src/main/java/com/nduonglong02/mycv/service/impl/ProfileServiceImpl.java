@@ -8,10 +8,16 @@ import com.nduonglong02.mycv.repository.ProfileRepository;
 import com.nduonglong02.mycv.service.ProfileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,6 +26,9 @@ import java.util.UUID;
 @Transactional
 @Slf4j
 public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implements ProfileService {
+    @Value("${upload.path}")
+    private String filePath;
+
     @Autowired
     private ProfileRepository profileRepository;
     @Autowired
@@ -80,6 +89,23 @@ public class ProfileServiceImpl extends GenericServiceImpl<Profile, UUID> implem
     @Override
     public Boolean deleteById(UUID id) {
         if (id != null && profileRepository.findById(id).orElse(null) != null) {
+            try
+            {
+                Files.deleteIfExists(Paths.get(filePath + id + ".png"));
+                Files.deleteIfExists(Paths.get("Recycle Bin/" + id + ".png"));
+            }
+            catch(NoSuchFileException e)
+            {
+                log.error("No such file/directory exists");
+            }
+            catch(DirectoryNotEmptyException e)
+            {
+                log.error("Directory is not empty");
+            }
+            catch(IOException e)
+            {
+                log.error("Invalid permissions.");
+            }
             profileRepository.deleteById(id);
             return true;
         }
