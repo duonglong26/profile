@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.8ee1a392.css",
-    "main.js": "/static/js/main.4c4fe9bf.js",
+    "main.js": "/static/js/main.6c3595c0.js",
     "static/js/787.f2a0fa2f.chunk.js": "/static/js/787.f2a0fa2f.chunk.js",
     "static/media/macbook-pro-apple-laptop-headphones.jpg": "/static/media/macbook-pro-apple-laptop-headphones.91fa2698b152f03657ce.jpg",
     "index.html": "/index.html",
     "main.8ee1a392.css.map": "/static/css/main.8ee1a392.css.map",
-    "main.4c4fe9bf.js.map": "/static/js/main.4c4fe9bf.js.map",
+    "main.6c3595c0.js.map": "/static/js/main.6c3595c0.js.map",
     "787.f2a0fa2f.chunk.js.map": "/static/js/787.f2a0fa2f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8ee1a392.css",
-    "static/js/main.4c4fe9bf.js"
+    "static/js/main.6c3595c0.js"
   ]
 }
