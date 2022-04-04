@@ -1,54 +1,19 @@
+import axios from 'axios';
+import { API_ENPOINT, HEADER } from '../../../../Constraint';
+const API_PROFILE = API_ENPOINT + "/api/profile";
+
 export const getAllProfile = () => {
-    let axios = require('axios');
-    let config = {
-        method: 'get',
-        url: '/api/profile/all',
-        headers: {
-            // 'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        }
-    };
-    return axios(config);
+    return axios.get(API_PROFILE + "/all");
 };
 
 export const deleteProfileById = (id) => {
-    let axios = require('axios');
-    let config = {
-        method: 'delete',
-        url: '/api/profile/' + id,
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        }
-    };
-    return axios(config);
+    return axios.delete(API_PROFILE + "/" + id, HEADER);
 };
 
 export const newProfile = (obj) => {
-    let axios = require('axios');
-    let config = {
-        method: 'post',
-        url: '/api/profile',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        },
-        data: obj
-    };
-    return axios(config);
+    return axios.post(API_PROFILE, obj, HEADER)
 };
 
-export const uploadImage = (file, idProfile) => {
-    let axios = require('axios');
-    let FormData = require('form-data');
-    let fs = require('fs');
-    let formdata = new FormData();
-    formdata.append('file', file);
-    formdata.append('idProfile', idProfile);
-    let config = {
-        method: 'post',
-        url: '/api/image',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        },
-        data: formdata
-    };
-    return axios(config);
+export const uploadImage = (data) => {
+    return axios.post(API_ENPOINT + "/api/image", data, HEADER);
 };

@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from "react";
 import styles from './_header.module.scss';
 import { Link } from "react-router-dom";
-import { ROOT_PATH } from "../../../../Const";
+import { ROOT_PATH } from "../../../../Constraint";
 import { toast } from 'react-toastify';
 import { ThemeContext } from '../ProfileManagement/ProfileManagement';
 

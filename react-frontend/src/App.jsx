@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Introduce from './app/views/Introduce/Introduce';
 import UserProfile from './app/views/Profile/UserProfile';
-import { ROOT_PATH } from "./Const";
+import { ROOT_PATH } from "./Constraint";
 import Login from './app/views/Login/LoginForm';
 
 function App() {

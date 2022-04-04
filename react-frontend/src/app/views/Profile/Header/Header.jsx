@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import styles from './_header.module.scss';
 import { Link } from "react-router-dom";
-import { ROOT_PATH } from "../../../../Const";
-import { AiOutlineBars } from "react-icons/ai";
+import { ROOT_PATH } from "../../../../Constraint";
 
 function Header() {
 

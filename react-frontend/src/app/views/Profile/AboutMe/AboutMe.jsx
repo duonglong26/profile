@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect, useContext } from "react";
 import styles from "./_about-me.module.scss";
 import { ThemeContext } from '../UserProfile';
-import { API_ENPOINT } from '../../../../Const'
+import { urlGetImage } from '../../Profile/UserProfileService'
 
 function AboutMe() {
     const providerValue = useContext(ThemeContext);
@@ -24,7 +24,7 @@ function AboutMe() {
                             // eslint-disable-next-line jsx-a11y/img-redundant-alt
                             <img
                                 src={
-                                    API_ENPOINT + "/api/image/" + profile?.id + ".png"
+                                    urlGetImage(profile?.id)
                                 }
                                 alt="picture-of-myself"
                                 className={styles.image}
