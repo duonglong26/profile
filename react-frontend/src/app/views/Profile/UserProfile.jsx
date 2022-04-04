@@ -52,6 +52,7 @@ function UserProfile() {
             behavior: 'smooth'
         });
     };
+    
 
     return (
         <>
@@ -74,6 +75,7 @@ function UserProfile() {
             >
                 <AiFillCaretUp />
             </div>
+        
         </>
     );
 }
