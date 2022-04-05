@@ -326,7 +326,10 @@ function ProfileDialog() {
                     providerValue.handleLoadPageData();
                     // save image of profile - img did validate require
                     if (image) {
-                        uploadImage(image, res.data.id).then((res) => {
+                        let formdata = new FormData();
+                        formdata.set('file', image);
+                        formdata.set('idProfile', res.data.id);
+                        uploadImage(formdata).then((res) => {
                         }).catch(function (error) {
                             toast.warning("Save image fail");
                         })
