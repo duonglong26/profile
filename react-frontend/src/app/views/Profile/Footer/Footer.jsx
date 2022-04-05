@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, memo } from "react";
 import styles from "./_footer.module.scss";
 import {
     AiFillFacebook,
@@ -135,4 +135,4 @@ function Footer() {
         </footer>
     );
 }
-export default Footer;
+export default memo(Footer);
