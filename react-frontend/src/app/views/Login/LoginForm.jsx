@@ -44,8 +44,11 @@ export default function LoginForm() {
         });
         login(data).then((res) => {
             console.log(res);
-            if (res?.data) {
+            debugger
+            if (res.data !== null && res.data.access_token !== null) {
+                debugger
                 console.log(res.data);
+                console.log(res.data.access_token);
                 localStorage.setItem("access_token", res.data.access_token)
                 toast.success("Loggin sucess");
                 navigate('/'); // then login success -> go to home page
