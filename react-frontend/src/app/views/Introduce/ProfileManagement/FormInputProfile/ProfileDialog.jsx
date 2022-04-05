@@ -2,7 +2,7 @@ import React, { memo, useContext, useState, useEffect } from 'react';
 import styles from './_profile_dialog.module.scss';
 import { MdClose } from "react-icons/md";
 import { ThemeContext } from '../ProfileManagement';
-import { newProfile } from '../../ProfileManagement/ProfileService';
+import { newProfile, uploadImage } from '../../ProfileManagement/ProfileService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaMinusCircle, FaPlus } from "react-icons/fa";
@@ -38,7 +38,6 @@ function ProfileDialog() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [job, setJob] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState(null);
     const [address, setAddress] = useState('')
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkInstagram, setLinkInstagram] = useState('');
@@ -46,6 +45,7 @@ function ProfileDialog() {
     const [linkGithub, setLinkGithub] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [image, setImage] = useState(null);
     // Inrtroduce-AboutMe
     const [sentenceWelcome, setSentenceWelcome] = useState('');
     const [introductionUser, setIntroductionUser] = useState('');
@@ -84,7 +84,6 @@ function ProfileDialog() {
             setFirstName(obj?.personalInformation?.firstName ? obj?.personalInformation?.firstName : '');
             setLastName(obj?.personalInformation?.lastName ? obj?.personalInformation?.lastName : '');
             setJob(obj?.personalInformation?.job ? obj?.personalInformation?.job : '');
-            setDateOfBirth(obj?.personalInformation?.dateOfBirth ? obj?.personalInformation?.dateOfBirth : '');
             setAddress(obj?.personalInformation?.address ? obj?.personalInformation?.address : '');
             setLinkFacebook(obj?.personalInformation?.linkFacebook ? obj?.personalInformation?.linkFacebook : '');
             setLinkInstagram(obj?.personalInformation?.linkInstagram ? obj?.personalInformation?.linkInstagram : '');
@@ -123,9 +122,6 @@ function ProfileDialog() {
             case "job":
                 setJob(value);
                 break;
-            // case "dateOfBirth":
-            //     setDateOfBirth(value);
-            //     break;
             case "address":
                 setAddress(value);
                 break;
@@ -195,9 +191,6 @@ function ProfileDialog() {
         } else if (job === '') {
             toast.warning("Let's fill job");
             return false;
-        // } else if (dateOfBirth === null) {
-        //     toast.warning("Let's fill date of birth");
-        //     return false;
         } else if (address === '') {
             toast.warning("Let's fill address");
             return false;
@@ -221,6 +214,9 @@ function ProfileDialog() {
             return false;
         } else if (descriptionTask === '') {
             toast.warning("Let's fill description task");
+            return false;
+        } else if (image === null && id === null) {
+            toast.warning("Let's choose image for profile");
             return false;
         }
         return true;
@@ -302,7 +298,6 @@ function ProfileDialog() {
                 firstName: firstName,
                 lastName: lastName,
                 job: job,
-                dateOfBirth: dateOfBirth,
                 address: address,
                 linkFacebook: linkFacebook,
                 linkInstagram: linkInstagram,
@@ -326,9 +321,16 @@ function ProfileDialog() {
         if (localStorage.getItem('access_token') && validateProfile()) {
             newProfile(obj).then((res) => {
                 if (res?.data) {
-                    toast.success("Saved");
+                    toast.success("Success");
                     handleClose();
                     providerValue.handleLoadPageData();
+                    // save image of profile - img did validate require
+                    if (image) {
+                        uploadImage(image, res.data.id).then((res) => {
+                        }).catch(function (error) {
+                            toast.warning("Save image fail");
+                        })
+                    }
                     return;
                 }
                 throw Error(res.status);
@@ -377,6 +379,13 @@ function ProfileDialog() {
         newListProject.splice(index, 1); //delete 1 element from 'index'
         return setProjectList([...newListProject]);
     }
+
+    const handleChangeImage = (e) => {
+        setImage(e.target.files[0]);
+    }
+    console.log(typeof (image));
+    console.log("Image: ");
+    console.log(image);
 
     return (
         <div className={styles.container}>
@@ -444,22 +453,6 @@ function ProfileDialog() {
                                 Job
                             </label>
                         </div>
-                        {/* Date of birth */}
-                        {/* <div className={styles.form}>
-                            <input
-                                type="date"
-                                className={styles.formInput}
-                                autoComplete="off"
-                                placeholder=" "
-                                value={dateOfBirth ? dateOfBirth : ''}
-                                onChange={(input) => handleChange(input.target.value, "dateOfBirth")}
-                            />
-                            <label
-                                className={styles.formLabel}
-                            >
-                                Date Of Birth
-                            </label>
-                        </div> */}
                         {/* Address */}
                         <div className={styles.form}>
                             <input
@@ -570,6 +563,26 @@ function ProfileDialog() {
                                 className={styles.formLabel}
                             >
                                 Phone
+                            </label>
+                        </div>
+                        {/* Image */}
+                        <div className={styles.form}>
+                            <input
+                                type="file"
+                                className={styles.formInput}
+                                title="Upload your picture"
+                                autoComplete="off"
+                                placeholder=" "
+                                // accept="image/*"
+                                // value={image ? image : ""}
+                                onChange={(input) => {
+                                    handleChangeImage(input)
+                                }}
+                            />
+                            <label
+                                className={styles.formLabel}
+                            >
+                                Picture Yourself
                             </label>
                         </div>
                     </div>
