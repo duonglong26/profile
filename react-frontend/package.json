@@ -2,6 +2,11 @@
   "name": "profile",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:9999"
+    }
+  },
   "dependencies": {
     "@fontsource/nunito-sans": "^4.5.3",
     "@testing-library/jest-dom": "^5.16.2",
