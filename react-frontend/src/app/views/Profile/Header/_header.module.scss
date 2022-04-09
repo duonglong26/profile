@@ -54,15 +54,70 @@
                     }
                 }
             }
-            .iconNav {
-                display: none;
+        }
+        .navbar {
+            font-size: 400%;
+            @include linerText(45deg, #06619c, #02da97);
+            display: none;
+            cursor: pointer;
+
+        }
+        .overlay{
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0, 0.3);
+            z-index: 6;
+            display: none;
+        }
+        .nav_mb{
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 32rem;
+            max-width: 100%;
+            background-color: #fff;
+            z-index: 7;
+            transform: translateX(100%);
+            // transform: none;
+            
+            .exit{
+                font-size: 400%;
+                @include linerText(45deg, #06619c, #02da97);
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+                cursor: pointer;
+
             }
+
+        }
+        .listItem_mb{
+            // text-decoration: none;
+            margin-top: 6rem;
+            
+
+        }
+        .link_mb{
+            // text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 2rem 0;
+            font-size: 2.3rem;
+            @include linerText(45deg, #06619c, #02da97);
+            
+        }
+        .nav_input_mb:checked ~ .overlay{
+            display: block;
         }
     }
 }
 
 // Thiết bị màn hình nhỏ hơn 900px
-@media only screen and (max-width: 899px) {
+@media only screen and (max-width: 930px) {
     .header {
         .nav {
             .title {
@@ -70,6 +125,9 @@
             }
             .listItem {
                 display: none;
+            }
+            .navbar{
+                display: block;
             }
         }
     }
