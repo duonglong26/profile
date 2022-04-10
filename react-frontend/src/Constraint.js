@@ -9,8 +9,6 @@ export const API_ENPOINT = "";
 
 export const HEADER = {
     headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-        // 'Access-Control-Allow-Origin': "*",
-        // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token')
     }
 }
