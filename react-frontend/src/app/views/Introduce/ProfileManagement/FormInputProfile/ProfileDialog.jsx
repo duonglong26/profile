@@ -181,6 +181,8 @@ function ProfileDialog() {
     }
 
     const validateProfile = () => {
+        let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var regPhone = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
         console.log("Validating..");
         if (firstName === '') {
             toast.warning("Let's fill first name");
@@ -197,8 +199,14 @@ function ProfileDialog() {
         } else if (email === '') {
             toast.warning("Let's fill email");
             return false;
+        } else if (!regEmail.test(email)) {
+            toast.warning("Invalid Email");
+            return false;
         } else if (phone === '') {
             toast.warning("Let's fill phone");
+            return false;
+        } else if (!regPhone.test(phone)) {
+            toast.warning("Invalid Phone Number");
             return false;
         } else if (sentenceWelcome === '') {
             toast.warning("Let's fill sentence welcome");
