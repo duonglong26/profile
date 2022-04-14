@@ -25,20 +25,20 @@
 
         .item {
             box-shadow: 0 0.1rem 1.5rem -0.3rem rgb(112, 145, 161);
-            padding: 1rem;
+            padding: 1rem 2rem;
             margin: 1rem;
             border-radius: 2rem;
             cursor: pointer;
             text-transform: uppercase;
 
             &:hover {
-                background: rgb(119, 210, 226);
+                background: linear-gradient(to right, #43afe9, #38f9d7);
                 color: $white-color;
             }
         }
 
         .active {
-            background: rgb(119, 210, 226);
+            background: linear-gradient(to right, #43afe9, #38f9d7);
             color: $white-color;
         }
     }
