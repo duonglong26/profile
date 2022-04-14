@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { login } from './LoginService';
 import { toast } from 'react-toastify';
 import styles from './_login.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 toast.configure({
     autoClose: 3000,
@@ -14,7 +13,6 @@ toast.configure({
 });
 
 export default function LoginForm() {
-    let navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -51,7 +49,7 @@ export default function LoginForm() {
                 console.log(res.data.access_token);
                 localStorage.setItem("access_token", res.data.access_token)
                 toast.success("Loggin sucess");
-                navigate('/'); // then login success -> go to home page
+                window.location.pathname = '/'; // then login success -> go to home page
                 return;
             }
             throw Error(res.status);
