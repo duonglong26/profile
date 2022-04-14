@@ -1,154 +1,210 @@
 @import "../../../styles/root";
 
 .ourTeam {
-    font-family: "roboto", sans-serif;
+  font-family: "roboto", sans-serif;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 64px 48px;
+  color: $text-color;
+  background-color: rgb(248, 249, 250);
+
+  .title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 50px;
+    @include linerText(45deg, #9c0606, #02ccda);
+  }
+
+  .listMember {
     width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
-    padding: 64px 48px;
-    color: $text-color;
-    background-color: rgb(248, 249, 250);
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 
-    .title {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 50px;
-        @include linerText(45deg, #9c0606, #02ccda);
-    }
+    .memberCard {
+      width: 325px;
+      height: 535px;
+      margin: 0 60px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      position: relative;
 
-    .listMember {
+      &:hover {
+        background-color: rgba(226, 230, 236, 0.4);
+        box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+
+        .boxIconTrash {
+          display: block;
+        }
+      }
+
+      .cardImg {
         width: 100%;
-        height: 600px;
+        height: 100%;
         display: flex;
-        align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
+        align-items: center;
 
-        .memberCard {
-            width: 325px;
-            height: 535px;
-            margin: 0 60px;
-            padding: 20px;
+        .image {
+          height: 280px;
+          width: 280px;
+          box-sizing: border-box;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 500px;
+          border: 8px solid rgba(208, 213, 221, 0.8);
+        }
+
+        .iconUser {
+          padding: 15px;
+          color: rgb(31, 62, 77);
+        }
+      }
+
+      .cardContent {
+        box-sizing: border-box;
+        width: 100%;
+        height: calc(100% - 64%);
+        padding: 5px;
+
+        .name {
+          display: block;
+          margin: 5px 0 0;
+          width: 100%;
+          line-height: 25px;
+          text-align: center;
+          color: black;
+          font-size: 20px;
+          font-weight: 700;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .job {
+          margin: 10px 0;
+          width: 100%;
+          line-height: 25px;
+          text-align: center;
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        .listIconsSocial {
+          text-align: center;
+          font-size: 19px;
+          .icon {
+            background: $black-color;
+            color: $white-color;
+            padding: 10px;
+            margin: 9px;
+            border-radius: 20px;
+            cursor: pointer;
+          }
+          a {
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    font-size: 1.6rem;
+    margin: 6rem 0;
+    box-sizing: border-box;
+    background-color: rgb(241, 241, 241);
+    tbody {
+      tr {
+        height: 3rem;
+        border: 1px solid black;
+        td {
+          padding: 0 0.8rem;
+        }
+
+        .iconMode2{
+            padding: 0 0.8rem;
+            width: 100%;
+            height: 3rem;
+            box-sizing: border-box;
             display: flex;
-            flex-direction: column;
-            border-radius: 10px;
-            position: relative;
-
-            &:hover {
-                background-color: rgba(226, 230, 236, 0.4);
-                box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
-
-                .boxIconTrash {
-                    display: block;
-                }
-            }
-
-            .cardImg {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .image {
-                    height: 280px;
-                    width: 280px;
-                    box-sizing: border-box;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 500px;
-                    border: 8px solid rgba(208, 213, 221, 0.8);
-                }
-
-                .iconUser {
-                    padding: 15px;
-                    color: rgb(31, 62, 77);
-                }
-            }
-
-            .cardContent {
-                box-sizing: border-box;
-                width: 100%;
-                height: calc(100% - 64%);
-                padding: 5px;
-
-                .name {
-                    display: block;
-                    margin: 5px 0 0;
-                    width: 100%;
-                    line-height: 25px;
-                    text-align: center;
-                    color: black;
-                    font-size: 20px;
-                    font-weight: 700;
-                    cursor: pointer;
-                    text-decoration: none;
-                }
-
-                .job {
-                    margin: 10px 0;
-                    width: 100%;
-                    line-height: 25px;
-                    text-align: center;
-                    box-sizing: border-box;
-                    font-size: 16px;
-                }
-
-                .listIconsSocial {
-                    text-align: center;
-                    font-size: 19px;
-                    .icon {
-                        background: $black-color;
-                        color: $white-color;
-                        padding: 10px;
-                        margin: 9px;
-                        border-radius: 20px;
-                        cursor: pointer;
-                    }
-                    a {
-                        color: $text-color;
-                    }
-                }
+            align-items: center;
+            justify-content: center;
+            .icon{
+                cursor: pointer;
+                font-size: 1.8rem;
+                padding: 0 0.5rem;
             }
         }
+      }
+
+      .thead {
+        background-color: rgb(71, 101, 121);
+        height: 3rem;
+        color: white;
+      }
     }
+  }
+
+  .btnMode {
+    position: absolute;
+    right: 5%;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    display: inline-block;
+    background: linear-gradient(to right, #43afe9, #38f9d7);
+  }
 }
 
 .addMember {
-    width: 325px;
-    height: 535px;
-    margin: 0 60px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
+  width: 325px;
+  height: 535px;
+  margin: 0 60px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+
+  .box {
+    width: 60px;
+    height: 60px;
+    background: #63b1bb;
+    border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    // box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+    font-size: 3.5rem;
+    color: rgb(248, 249, 250);
+    box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
+    cursor: pointer;
 
-    .box {
-        width: 60px;
-        height: 60px;
-        background: #63b1bb;
-        border-radius: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 3.5rem;
-        color: rgb(248, 249, 250);
-        box-shadow: 0px 1px 27px -3px rgb(0 0 0 / 20%);
-        cursor: pointer;
-
-        &:hover {
-            box-shadow: 0px 1px 27px -3px rgba(0, 255, 255, 0.6);
-        }
-
-        &:active {
-            width: 95px;
-            height: 95px;
-        }
+    &:hover {
+      box-shadow: 0px 1px 27px -3px rgba(0, 255, 255, 0.6);
     }
+
+    &:active {
+      width: 95px;
+      height: 95px;
+    }
+  }
 }
 
 // Thiết bị màn hình nhỏ hơn 1440px
@@ -161,9 +217,9 @@
 
 // Thiết bị màn hình nhỏ hơn 900px
 @media only screen and (max-width: 899px) {
-    // .listMember {
-    //     flex-wrap: wrap;
-    // }
+  // .listMember {
+  //     flex-wrap: wrap;
+  // }
 }
 
 // Thiết bị màn hình nhỏ hơn 768px

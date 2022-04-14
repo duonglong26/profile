@@ -1,255 +1,336 @@
-import React, { memo, useEffect, useState, createContext } from 'react';
+import React, { memo, useEffect, useState, createContext } from "react";
 import { Link } from "react-router-dom";
-import clsx from 'clsx';
-import styles from './_profile_management.module.scss';
+import clsx from "clsx";
+import styles from "./_profile_management.module.scss";
 import {
-    FaFacebook,
-    FaTwitter,
-    FaInstagram,
-    FaTrashAlt,
-    FaUser,
-    FaPlus,
-    FaPencilAlt
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaTrashAlt,
+  FaUser,
+  FaPlus,
+  FaPencilAlt,
 } from "react-icons/fa";
 import { GoMarkGithub } from "react-icons/go";
-// import { ROOT_PATH } from "../../../../Const";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { getAllProfile, deleteProfileById } from './ProfileService';
-import ProfileDialog from './FormInputProfile/ProfileDialog';
-import DialogAcceptDelete from '../../Components/DialogAccept/DialogAcceptDelete';
-
+import { FaExchangeAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { getAllProfile, deleteProfileById } from "./ProfileService";
+import ProfileDialog from "./FormInputProfile/ProfileDialog";
+import DialogAcceptDelete from "../../Components/DialogAccept/DialogAcceptDelete";
 
 toast.configure({
-    autoClose: 3000,
-    draggable: false,
-    limit: 3,
-    style: {
-        fontSize: '1.5rem'
-    }
+  autoClose: 3000,
+  draggable: false,
+  limit: 3,
+  style: {
+    fontSize: "1.5rem",
+  },
 });
 
 export const ThemeContext = createContext();
 
 function ProfileManagement() {
-    const [listProfile, setListProfile] = useState([]);
-    const [isOpenFormInputProfile, setIsOpenFormInputProfile] = useState(false);
-    const [isOpenFormAcceptDelete, setIsOpenFormAcceptDelete] = useState(false);
-    const [currentIdDelete, setCurrentIdDelete] = useState("");
-    const [isLogin, setIslogin] = useState(false);
-    const [currentProfileEdit, setCurrentProfileEdit] = useState({});
+  const [listProfile, setListProfile] = useState([]);
+  const [isOpenFormInputProfile, setIsOpenFormInputProfile] = useState(false);
+  const [isOpenFormAcceptDelete, setIsOpenFormAcceptDelete] = useState(false);
+  const [currentIdDelete, setCurrentIdDelete] = useState("");
+  const [isLogin, setIslogin] = useState(false);
+  const [currentProfileEdit, setCurrentProfileEdit] = useState({});
+  const [isShowTable, setIsShowTable] = useState(false);
 
-    useEffect(() => {
-        handleLoadPageData();
-    }, [])
+  useEffect(() => {
+    handleLoadPageData();
+  }, []);
 
-    useEffect(() => {
-        if (localStorage.getItem('access_token')) {
-            setIslogin(true);
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      setIslogin(true);
+    }
+  }, []);
+
+  const handleLoadPageData = () => {
+    getAllProfile()
+      .then((res) => {
+        if (res?.data) {
+          console.log(res.data);
+          setListProfile(res.data);
+          return;
         }
-    }, [])
+        throw Error(res.status);
+      })
+      .catch(function (error) {
+        toast.warning("Server error");
+      });
+  };
 
-    const handleLoadPageData = () => {
-        getAllProfile().then((res) => {
-            if (res?.data) {
-                console.log(res.data);
-                setListProfile(res.data);
-                return;
-            }
-            throw Error(res.status);
-        }).catch(function (error) {
-            toast.warning("Server error");
+  const handleLink = (url, type) => {
+    if (url === null || url === "") {
+      switch (type) {
+        case "facebook":
+          toast.error("Facebook link not found");
+          break;
+        case "instagram":
+          toast.error("Instagram link not found");
+          break;
+        case "twitter":
+          toast.error("Twitter link not found");
+          break;
+        case "github":
+          toast.error("Github link not found");
+          break;
+        default:
+          return;
+      }
+    } else {
+      toast.info("Go to the URL: " + url);
+    }
+  };
+
+  const handleOpenFormInput = () => {
+    setCurrentProfileEdit(null);
+    setIsOpenFormInputProfile(!isOpenFormInputProfile);
+  };
+
+  const handleOpenFormDelete = (value) => {
+    setIsOpenFormAcceptDelete(!isOpenFormAcceptDelete);
+    setCurrentIdDelete(value);
+  };
+
+  const handleDeteleItem = (id) => {
+    if (localStorage.getItem("access_token")) {
+      deleteProfileById(id)
+        .then((res) => {
+          if (res?.data) {
+            toast.success("Delete success");
+            handleLoadPageData();
+            return;
+          }
+          throw Error(res.status);
+        })
+        .catch(function (error) {
+          toast.warning("Server error");
         });
     }
+  };
 
-    const handleLink = (url, type) => {
-        if (url === null || url === "") {
-            switch (type) {
-                case 'facebook':
-                    toast.error("Facebook link not found");
-                    break;
-                case 'instagram':
-                    toast.error("Instagram link not found");
-                    break;
-                case 'twitter':
-                    toast.error("Twitter link not found");
-                    break;
-                case 'github':
-                    toast.error("Github link not found");
-                    break;
-                default:
-                    return;
-            }
-        } else {
-            toast.info("Go to the URL: " + url);
-        }
-    }
+  const handleEditProfile = (obj) => {
+    handleOpenFormInput();
+    setCurrentProfileEdit(obj);
+  };
 
-    const handleOpenFormInput = () => {
-        setCurrentProfileEdit(null)
-        setIsOpenFormInputProfile(!isOpenFormInputProfile);
-    }
+  const providerValue = {
+    setIsOpenFormInputProfile,
+    setIsOpenFormAcceptDelete,
+    handleDeteleItem,
+    currentIdDelete,
+    setCurrentIdDelete,
+    handleLoadPageData,
+    currentProfileEdit,
+  };
 
-    const handleOpenFormDelete = (value) => {
-        setIsOpenFormAcceptDelete(!isOpenFormAcceptDelete);
-        setCurrentIdDelete(value);
-    }
+  return (
+    <>
+      <ThemeContext.Provider value={providerValue}>
+        {/* Dialog input profile */}
+        {isOpenFormInputProfile && <ProfileDialog />}
+        {/* Dialog accept delete profile */}
+        {isOpenFormAcceptDelete && <DialogAcceptDelete />}
 
-    const handleDeteleItem = (id) => {
-        if (localStorage.getItem('access_token')) {
-            deleteProfileById(id).then((res) => {
-                if (res?.data) {
-                    toast.success("Delete success");
-                    handleLoadPageData();
-                    return;
-                }
-                throw Error(res.status);
-            }).catch(function (error) {
-                toast.warning("Server error");
-            });
-        }
-    }
-
-    const handleEditProfile = (obj) => {
-        handleOpenFormInput();
-        setCurrentProfileEdit(obj)
-    }
-
-    const providerValue = {
-        setIsOpenFormInputProfile,
-        setIsOpenFormAcceptDelete,
-        handleDeteleItem,
-        currentIdDelete,
-        setCurrentIdDelete,
-        handleLoadPageData,
-        currentProfileEdit,
-    }
-
-    return (
-        <>
-            <ThemeContext.Provider value={providerValue}>
-                {/* Dialog input profile */}
-                {isOpenFormInputProfile &&
-                    <ProfileDialog />
-                }
-                {/* Dialog accept delete profile */}
-                {isOpenFormAcceptDelete &&
-                    <DialogAcceptDelete />
-                }
-
-                <div className={styles.ourTeam}>
-                    <div className={styles.title}>
-                        Our Team
+        <div className={styles.ourTeam}>
+          <div className={styles.title}>Our Team</div>
+          {/* Change mode */}
+          {isLogin && (
+            <button
+              className={styles.btnMode}
+              onClick={() => setIsShowTable(!isShowTable)}
+            >
+              <FaExchangeAlt />
+            </button>
+          )}
+          {isLogin && isShowTable && (
+            <button
+              className={styles.btn}
+              onClick={() => handleOpenFormInput()}
+              style={{
+                right:'10%'
+              }}
+            >
+              ADD PROFILE
+            </button>
+          )}
+          {/* List profile - mode 1*/}
+          {!isShowTable && (
+            <div className={styles.listMember}>
+              {/* profile information */}
+              {listProfile.map((member) => (
+                <div key={member.id} className={styles.memberCard}>
+                  {/* icon delete */}
+                  {isLogin && (
+                    <div
+                      className={styles.boxIconTrash}
+                      onClick={() => handleOpenFormDelete(member.id)}
+                    >
+                      <FaTrashAlt className={styles.icon} />
                     </div>
-                    {/* List profile */}
-                    <div className={styles.listMember}>
-                        {/* profile information */}
-                        {listProfile.map((member) => (
-                            <div key={member.id} className={styles.memberCard}>
-                                {/* icon delete */}
-                                {isLogin &&
-                                    <div
-                                        className={styles.boxIconTrash}
-                                        onClick={() => handleOpenFormDelete(member.id)}
-                                    >
-                                        <FaTrashAlt
-                                            className={styles.icon}
-                                        />
-                                    </div>
-                                }
-                                {/* icon edit */}
-                                {isLogin &&
-                                    <div
-                                        className={styles.boxIconTrash}
-                                        style={{
-                                            color: "#5766ae",
-                                            right: "5rem"
-                                        }}
-                                        onClick={() => handleEditProfile(member)}
-                                    >
-                                        <FaPencilAlt
-                                            className={styles.icon}
-                                            style={{
-                                                color: "#5766ae",
-                                                boxShadow: "none",
-                                            }}
-                                        />
-                                    </div>
-                                }
-                                {/* content */}
-                                <div className={styles.cardImg}>
-                                    <Link
-                                        to={{
-                                            pathname: "/user",
-                                            search: "?key=" + member?.id,
-                                        }}
-                                        className={styles.name}
-                                    >
-                                        <FaUser
-                                            className={clsx(styles.image, styles.iconUser)}
-                                        />
-                                    </Link>
-                                </div>
-                                <div className={styles.cardContent}>
-                                    <Link
-                                        to={{
-                                            pathname: "/user",
-                                            search: "?key=" + member?.id,
-                                        }}
-                                        className={styles.name}
-                                    >
-                                        {member?.personalInformation?.firstName + " " + member?.personalInformation?.lastName}
-                                    </Link>
-                                    <p className={styles.job}>
-                                        {member?.personalInformation?.job}
-                                    </p>
+                  )}
+                  {/* icon edit */}
+                  {isLogin && (
+                    <div
+                      className={styles.boxIconTrash}
+                      style={{
+                        color: "#5766ae",
+                        right: "5rem",
+                      }}
+                      onClick={() => handleEditProfile(member)}
+                    >
+                      <FaPencilAlt
+                        className={styles.icon}
+                        style={{
+                          color: "#5766ae",
+                          boxShadow: "none",
+                        }}
+                      />
+                    </div>
+                  )}
+                  {/* content */}
+                  <div className={styles.cardImg}>
+                    <Link
+                      to={{
+                        pathname: "/user",
+                        search: "?key=" + member?.id,
+                      }}
+                      className={styles.name}
+                    >
+                      <FaUser className={clsx(styles.image, styles.iconUser)} />
+                    </Link>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <Link
+                      to={{
+                        pathname: "/user",
+                        search: "?key=" + member?.id,
+                      }}
+                      className={styles.name}
+                    >
+                      {member?.personalInformation?.firstName +
+                        " " +
+                        member?.personalInformation?.lastName}
+                    </Link>
+                    <p className={styles.job}>
+                      {member?.personalInformation?.job}
+                    </p>
 
-                                    {/* Danh sách link liên kết mạng xã hội */}
-                                    <p className={styles.listIconsSocial}>
-                                        <a
-                                            href={member?.personalInformation?.linkFacebook}
-                                            onClick={() => handleLink(member?.personalInformation?.linkFacebook, 'facebook')}
-                                        >
-                                            <FaFacebook className={styles.icon} />
-                                        </a>
-                                        <a
-                                            href={member?.personalInformation?.linkTwitter}
-                                            onClick={() => handleLink(member?.personalInformation?.linkTwitter, 'twitter')}
-                                        >
-                                            <FaTwitter className={styles.icon} />
-                                        </a>
-                                        <a
-                                            href={member?.personalInformation?.linkInstagram}
-                                            onClick={() => handleLink(member?.personalInformation?.linkInstagram, 'instagram')}
-                                        >
-                                            <FaInstagram className={styles.icon} />
-                                        </a>
-                                        <a
-                                            href={member?.personalInformation?.linkGithub}
-                                            onClick={() => handleLink(member?.personalInformation?.linkGithub, 'github')}
-                                        >
-                                            <GoMarkGithub className={styles.icon} />
-                                        </a>
-                                    </p>
-
-                                </div>
-                            </div>
-                        ))}
-
-                        {isLogin &&
-                            <div className={clsx(styles.addMember)}>
-                                <div
-                                    onClick={() => handleOpenFormInput()}
-                                    className={styles.box}
-                                >
-                                    <FaPlus />
-                                </div>
-                            </div>
+                    {/* Danh sách link liên kết mạng xã hội */}
+                    <p className={styles.listIconsSocial}>
+                      <a
+                        href={member?.personalInformation?.linkFacebook}
+                        onClick={() =>
+                          handleLink(
+                            member?.personalInformation?.linkFacebook,
+                            "facebook"
+                          )
                         }
-                    </div>
+                      >
+                        <FaFacebook className={styles.icon} />
+                      </a>
+                      <a
+                        href={member?.personalInformation?.linkTwitter}
+                        onClick={() =>
+                          handleLink(
+                            member?.personalInformation?.linkTwitter,
+                            "twitter"
+                          )
+                        }
+                      >
+                        <FaTwitter className={styles.icon} />
+                      </a>
+                      <a
+                        href={member?.personalInformation?.linkInstagram}
+                        onClick={() =>
+                          handleLink(
+                            member?.personalInformation?.linkInstagram,
+                            "instagram"
+                          )
+                        }
+                      >
+                        <FaInstagram className={styles.icon} />
+                      </a>
+                      <a
+                        href={member?.personalInformation?.linkGithub}
+                        onClick={() =>
+                          handleLink(
+                            member?.personalInformation?.linkGithub,
+                            "github"
+                          )
+                        }
+                      >
+                        <GoMarkGithub className={styles.icon} />
+                      </a>
+                    </p>
+                  </div>
                 </div>
-            </ThemeContext.Provider>
-        </>
-    );
+              ))}
+
+              {isLogin && (
+                <div className={clsx(styles.addMember)}>
+                  <div
+                    onClick={() => handleOpenFormInput()}
+                    className={styles.box}
+                  >
+                    <FaPlus />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* List profile - mode 2*/}
+          {isShowTable && isLogin && (
+            <table>
+              <tbody>
+                <tr className={styles.thead}>
+                  <th></th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Job</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                </tr>
+
+                {listProfile.map((member, index) => (
+                  <tr key={index}>
+                    <td className={styles.iconMode2}>
+                      <div onClick={() => handleOpenFormDelete(member.id)}>
+                        <FaTrashAlt className={styles.icon} 
+                            style={{
+                                color:"#c11c1c"
+                            }}
+                        />
+                      </div>
+                      <div onClick={() => handleEditProfile(member)}>
+                        <FaPencilAlt className={styles.icon} 
+                            style={{
+                                color:"#467a9f"
+                            }}
+                        />
+                      </div>
+                    </td>
+                    <td>{member?.personalInformation?.firstName}</td>
+                    <td>{member?.personalInformation?.lastName}</td>
+                    <td>{member?.personalInformation?.job}</td>
+                    <td>{member?.personalInformation?.address}</td>
+                    <td>{member?.personalInformation?.phone}</td>
+                    <td>{member?.personalInformation?.email}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </ThemeContext.Provider>
+    </>
+  );
 }
 export default memo(ProfileManagement);
